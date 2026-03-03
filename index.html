@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LucarShop - Tienda Online Moderna</title>
+    <title>LowoodlA - Tienda</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">">
+    <link rel="stylesheet" href="style.css">"
 
 </head>
 <body>
@@ -15,7 +15,7 @@
     <header>
         <div class="container">
             <div class="header-container">
-                <div class="logo">LucarShop</div>
+                <div class="logo"><a href="index.html">LowoodlA</a></div>
                 
                 <!-- Botón menú hamburguesa (solo visible en móvil) -->
                 <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
@@ -26,13 +26,13 @@
                 
                 <nav id="mainNav">
                     <ul>
-                        <li><a href="#categorias">Categorías</a></li>
-                        <li><a href="#cotidiano">Uso Cotidiano</a></li>
-                        <li><a href="#pokemon">Pokémon</a></li>
-                        <li><a href="#ropa">Ropa</a></li>
-                        <li><a href="#legos">Legos</a></li>
-                        <li><a href="#pines">Pines</a></li>
-                        <li><a href="#stickers">Stickers</a></li>
+                        <li><a href="index.html">Categorías</a></li>
+                        <li><a href="cotidiano.html">Uso Cotidiano</a></li>
+                        <li><a href="pokemon.html">Pokémon</a></li>
+                        <li><a href="ropa.html">Ropa</a></li>
+                        <li><a href="legos.html">Legos</a></li>
+                        <li><a href="pines.html">Pines</a></li>
+                        <li><a href="stickers.html">Stickers</a></li>
                         <li><a href="info.html">Info</a></li>
                     </ul>
                 </nav>
@@ -56,38 +56,38 @@
             <div class="categories-grid">
                 <div class="category-card">
                     <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=200&fit=crop" alt="Uso Cotidiano" class="category-image">
-                    <h3>Uso Cotidiano</h3>
-                    <a href="#cotidiano" class="btn btn-primary">Explorar</a>
+                    <h3>Productos Variados</h3>
+                    <a href="cotidiano.html" class="btn btn-primary">Explorar</a>
                 </div>
                 
                 <div class="category-card">
                     <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=300&h=200&fit=crop" alt="Cartas Pokémon" class="category-image">
                     <h3>Cartas Pokémon</h3>
-                    <a href="#pokemon" class="btn btn-primary">Explorar</a>
+                    <a href="pokemon.html" class="btn btn-primary">Explorar</a>
                 </div>
                 
                 <div class="category-card">
                     <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=300&h=200&fit=crop" alt="Ropa" class="category-image">
                     <h3>Ropa</h3>
-                    <a href="#ropa" class="btn btn-primary">Explorar</a>
+                    <a href="ropa.html" class="btn btn-primary">Explorar</a>
                 </div>
                 
                 <div class="category-card">
                     <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=300&h=200&fit=crop" alt="Legos" class="category-image">
                     <h3>Legos</h3>
-                    <a href="#legos" class="btn btn-primary">Explorar</a>
+                    <a href="legos.html" class="btn btn-primary">Explorar</a>
                 </div>
                 
                 <div class="category-card">
                     <img src="https://images.unsplash.com/photo-1611095564695-4c849f56a9e5?w=300&h=200&fit=crop" alt="Pines" class="category-image">
                     <h3>Pines</h3>
-                    <a href="#pines" class="btn btn-primary">Explorar</a>
+                    <a href="pines.html" class="btn btn-primary">Explorar</a>
                 </div>
                 
                 <div class="category-card">
                     <img src="https://images.unsplash.com/photo-1618854965084-faba61fb3e49?w=300&h=200&fit=crop" alt="Stickers" class="category-image">
                     <h3>Stickers</h3>
-                    <a href="#stickers" class="btn btn-primary">Explorar</a>
+                    <a href="stickers.html" class="btn btn-primary">Explorar</a>
                 </div>
             </div>
         </section>
@@ -96,7 +96,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 LucarShop. Todos los derechos reservados. | <a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a></p>
+            <p>&copy; 2026 LowoodlA. Todos los derechos reservados. | <a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a></p>
         </div>
     </footer>
 
@@ -109,119 +109,6 @@
         <button class="close-toast" onclick="closeToast()">×</button>
     </div>
 
-    <script>
-        // Funcionalidad del menú hamburguesa
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const navLinks = document.querySelectorAll('nav a');
-        
-        function toggleMenu() {
-            menuToggle.classList.toggle('active');
-            mainNav.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            
-            // Prevenir scroll del body cuando el menú está abierto
-            if (mainNav.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-        }
-        
-        function closeMenu() {
-            menuToggle.classList.remove('active');
-            mainNav.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        // Event listeners para el menú
-        menuToggle.addEventListener('click', toggleMenu);
-        menuOverlay.addEventListener('click', closeMenu);
-        
-        // Cerrar menú al hacer click en cualquier enlace
-        navLinks.forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
-        
-        // Toast de bienvenida
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                const toast = document.getElementById('welcomeToast');
-                toast.classList.add('show');
-                
-                // Auto-ocultar después de 5 segundos
-                setTimeout(function() {
-                    closeToast();
-                }, 5000);
-            }, 500);
-        });
-        
-        function closeToast() {
-            const toast = document.getElementById('welcomeToast');
-            toast.classList.remove('show');
-        }
-        
-        // Smooth scroll para la navegación
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    // Cerrar toast si está abierto al navegar
-                    closeToast();
-                    
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Efecto de parallax suave en el scroll
-        let ticking = false;
-        
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                window.requestAnimationFrame(function() {
-                    const scrolled = window.pageYOffset;
-                    const parallaxElements = document.querySelectorAll('.product-card');
-                    
-                    parallaxElements.forEach((el, index) => {
-                        const speed = 0.5;
-                        const yPos = -(scrolled * speed);
-                        el.style.transform = `translateY(${yPos * 0.05}px)`;
-                    });
-                    
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
-
-        // Animación de entrada para elementos cuando entran en viewport
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.section-title').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
