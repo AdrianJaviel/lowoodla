@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LucarShop - Tienda Online Moderna</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Paleta inspirada en Lucario */
+            --color-primary: #1a3a52;
+            --color-primary-light: #2d5f7f;
+            --color-secondary: #4a9ece;
+            --color-accent: #6bb8e8;
+            --color-dark: #0f1c29;
+            --color-gray-dark: #1e2d3d;
+            --color-gray-medium: #3a4f63;
+            --color-gray-light: #7a8fa5;
+            --color-white: #ffffff;
+            --color-off-white: #f0f4f8;
+            
+            /* Tipografía */
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+            
+            /* Espaciado */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            
+            /* Bordes */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            
+            /* Sombras */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 20px rgba(74, 158, 206, 0.4);
+            
+            /* Transiciones */
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
+            color: var(--color-off-white);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Efecto de fondo animado */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(74, 158, 206, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(107, 184, 232, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header y Navegación */
+        header {
+            background: rgba(15, 28, 41, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--color-primary-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-md);
+            animation: slideDown 0.6s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md) 0;
+        }
+        
+        .logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition-medium);
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .logo:hover {
+            filter: brightness(1.2);
+            transform: scale(1.05);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        nav ul {
+            display: flex;
+            gap: var(--spacing-lg);
+            list-style: none;
+            align-items: center;
+        }
+        
+        /* Menú Hamburguesa para móvil */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--spacing-xs);
+            z-index: 101;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--color-white);
+            margin: 5px 0;
+            transition: var(--transition-medium);
+            border-radius: 2px;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        nav a {
+            color: var(--color-off-white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transform: translateX(-50%);
+            transition: var(--transition-medium);
+        }
+        
+        nav a:hover::before {
+            width: 100%;
+        }
+        
+        nav a:hover {
+            color: var(--color-accent);
+            background: rgba(74, 158, 206, 0.1);
+        }
+        
+        /* Hero Section - Mensaje de Bienvenida */
+        .hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            padding: calc(var(--spacing-xl) * 2) 0;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(107, 184, 232, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(74, 158, 206, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: var(--spacing-lg);
+            background: linear-gradient(135deg, var(--color-white), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--color-off-white);
+            max-width: 700px;
+            margin: 0 auto var(--spacing-xl);
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        
+        .hero .btn {
+            margin-top: var(--spacing-md);
+            font-size: 1.1rem;
+            padding: var(--spacing-md) calc(var(--spacing-xl) * 1.2);
+        }
+        
+        /* Sección de Categorías */
+        .categories-section {
+            margin-bottom: calc(var(--spacing-xl) * 1.5);
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            margin: var(--spacing-xl) 0 var(--spacing-lg);
+            color: var(--color-white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-left: var(--spacing-md);
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--color-accent), var(--color-secondary));
+            border-radius: 2px;
+        }
+        
+        /* Category Cards Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .category-card {
+            background: rgba(30, 45, 61, 0.6);
+            backdrop-filter: blur(8px);
+            border: 2px solid var(--color-gray-medium);
+            border-radius: var(--radius-lg);
+            padding: 0;
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInScale 0.5s ease both;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 158, 206, 0.08), rgba(107, 184, 232, 0.08));
+            opacity: 0;
+            transition: var(--transition-medium);
+            pointer-events: none;
+        }
+        
+        .category-card:hover::before {
+            opacity: 1;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            border-color: var(--color-accent);
+        }
+        
+        .category-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            transition: var(--transition-medium);
+            filter: brightness(0.85);
+        }
+        
+        .category-card:hover .category-image {
+            transform: scale(1.08);
+            filter: brightness(1);
+        }
+        
+        .category-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-white);
+            margin: var(--spacing-md) var(--spacing-md) var(--spacing-sm);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .category-card p {
+            color: var(--color-gray-light);
+            font-size: 0.95rem;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+        }
+        
+        .category-card .btn {
+            margin: 0 var(--spacing-md) var(--spacing-md);
+        }
+        
+        /* Animación escalonada para categorías */
+        .category-card:nth-child(1) { animation-delay: 0.1s; }
+        .category-card:nth-child(2) { animation-delay: 0.2s; }
+        .category-card:nth-child(3) { animation-delay: 0.3s; }
+        .category-card:nth-child(4) { animation-delay: 0.4s; }
+        .category-card:nth-child(5) { animation-delay: 0.5s; }
+        .category-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        /* Toast de Bienvenida */
+        .welcome-toast {
+            position: fixed;
+            top: 100px;
+            right: -400px;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            color: var(--color-white);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            z-index: 1000;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            max-width: 350px;
+            transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .welcome-toast.show {
+            right: var(--spacing-lg);
+        }
+        
+        .welcome-toast::before {
+            content: '🛒';
+            font-size: 1.5rem;
+        }
+        
+        .welcome-toast .close-toast {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: var(--color-white);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition-fast);
+        }
+        
+        .welcome-toast .close-toast:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        /* Product Card */
+        .product-card {
+            background: rgba(30, 45, 61, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--color-gray-medium);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            transition: all var(--transition-medium);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInScale 0.5s ease both;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 158, 206, 0.05), rgba(107, 184, 232, 0.05));
+            opacity: 0;
+            transition: var(--transition-medium);
+            pointer-events: none;
+        }
+        
+        .product-card:hover::before {
+            opacity: 1;
+        }
+        
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            border-color: var(--color-secondary);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+            background: var(--color-gray-dark);
+            transition: var(--transition-medium);
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: var(--spacing-sm) 0;
+        }
+        
+        .product-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-xs);
+            font-family: var(--font-body);
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-md);
+            font-family: var(--font-display);
+        }
+        
+        /* Botones */
+        .btn {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition-medium);
+            text-decoration: none;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            color: var(--color-white);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md), 0 0 20px rgba(74, 158, 206, 0.5);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-primary:focus {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 3px;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(15, 28, 41, 0.95);
+            border-top: 2px solid var(--color-primary-light);
+            padding: var(--spacing-xl) 0 var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+            text-align: center;
+        }
+        
+        footer p {
+            color: var(--color-gray-light);
+            font-size: 0.95rem;
+        }
+        
+        footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        
+        footer a:hover {
+            color: var(--color-white);
+        }
+        
+        /* Animación para cargar productos escalonadamente */
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+        .product-card:nth-child(7) { animation-delay: 0.7s; }
+        .product-card:nth-child(8) { animation-delay: 0.8s; }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            }
+            
+            .category-image {
+                height: 160px;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: var(--spacing-md);
+            }
+            
+            nav ul {
+                gap: var(--spacing-md);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            /* Mostrar botón hamburguesa */
+            .menu-toggle {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            /* Menú desplegable en móvil */
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(15, 28, 41, 0.98);
+                backdrop-filter: blur(10px);
+                padding: var(--spacing-xl) var(--spacing-lg);
+                transition: right var(--transition-slow);
+                z-index: 100;
+                box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+                border-left: 2px solid var(--color-primary-light);
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                align-items: flex-start;
+                margin-top: var(--spacing-xl);
+            }
+            
+            nav li {
+                width: 100%;
+                border-bottom: 1px solid var(--color-gray-medium);
+            }
+            
+            nav a {
+                display: block;
+                width: 100%;
+                padding: var(--spacing-md);
+                font-size: 1.1rem;
+                border-radius: 0;
+            }
+            
+            nav a::before {
+                display: none;
+            }
+            
+            nav a:hover {
+                background: rgba(74, 158, 206, 0.15);
+                padding-left: calc(var(--spacing-md) + 8px);
+            }
+            
+            /* Overlay para cerrar menú al hacer click fuera */
+            .menu-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.6);
+                z-index: 99;
+                opacity: 0;
+                transition: opacity var(--transition-medium);
+            }
+            
+            .menu-overlay.active {
+                display: block;
+                opacity: 1;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .welcome-toast {
+                max-width: 300px;
+                font-size: 1rem;
+            }
+            
+            .welcome-toast.show {
+                right: var(--spacing-sm);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-container {
+                padding: var(--spacing-sm) 0;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            nav {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-image {
+                height: 200px;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .hero p {
+                font-size: 0.95rem;
+            }
+            
+            .hero .btn {
+                font-size: 1rem;
+                padding: var(--spacing-sm) var(--spacing-lg);
+            }
+            
+            .category-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .welcome-toast {
+                top: 80px;
+                max-width: calc(100% - 2rem);
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">LucarShop</div>
+                
+                <!-- Botón menú hamburguesa (solo visible en móvil) -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="#categorias">Categorías</a></li>
+                        <li><a href="#cotidiano">Uso Cotidiano</a></li>
+                        <li><a href="#pokemon">Pokémon</a></li>
+                        <li><a href="#ropa">Ropa</a></li>
+                        <li><a href="#legos">Legos</a></li>
+                        <li><a href="#pines">Pines</a></li>
+                        <li><a href="#stickers">Stickers</a></li>
+                        <li><a href="info.html">Info</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section - Mensaje de Bienvenida -->
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Somos una tienda creada para acompañarte en tu día a día y en tus gustos</h1>
+                <p>Aquí encontrarás productos de uso cotidiano, coleccionables, ropa y artículos especiales pensados para fans y personas que buscan algo diferente.</p>
+                <a href="#categorias" class="btn btn-primary">Explorar la tienda</a>
+            </div>
+        </section>
+
+        <!-- Sección de Categorías -->
+        <section id="categorias" class="categories-section">
+            <h2 class="section-title">Nuestras Categorías</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=200&fit=crop" alt="Uso Cotidiano" class="category-image">
+                    <h3>Uso Cotidiano</h3>
+                    <a href="#cotidiano" class="btn btn-primary">Explorar</a>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=300&h=200&fit=crop" alt="Cartas Pokémon" class="category-image">
+                    <h3>Cartas Pokémon</h3>
+                    <a href="#pokemon" class="btn btn-primary">Explorar</a>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=300&h=200&fit=crop" alt="Ropa" class="category-image">
+                    <h3>Ropa</h3>
+                    <a href="#ropa" class="btn btn-primary">Explorar</a>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=300&h=200&fit=crop" alt="Legos" class="category-image">
+                    <h3>Legos</h3>
+                    <a href="#legos" class="btn btn-primary">Explorar</a>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1611095564695-4c849f56a9e5?w=300&h=200&fit=crop" alt="Pines" class="category-image">
+                    <h3>Pines</h3>
+                    <a href="#pines" class="btn btn-primary">Explorar</a>
+                </div>
+                
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1618854965084-faba61fb3e49?w=300&h=200&fit=crop" alt="Stickers" class="category-image">
+                    <h3>Stickers</h3>
+                    <a href="#stickers" class="btn btn-primary">Explorar</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 LucarShop. Todos los derechos reservados. | <a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a></p>
+        </div>
+    </footer>
+
+    <!-- Overlay del menú (para cerrar al hacer click fuera) -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Toast de Bienvenida -->
+    <div class="welcome-toast" id="welcomeToast">
+        <span>¡Disfruta tu visita en nuestra tienda!</span>
+        <button class="close-toast" onclick="closeToast()">×</button>
+    </div>
+
+    <script>
+        // Funcionalidad del menú hamburguesa
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            mainNav.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            
+            // Prevenir scroll del body cuando el menú está abierto
+            if (mainNav.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+        
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            mainNav.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Event listeners para el menú
+        menuToggle.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+        
+        // Cerrar menú al hacer click en cualquier enlace
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+        
+        // Toast de bienvenida
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const toast = document.getElementById('welcomeToast');
+                toast.classList.add('show');
+                
+                // Auto-ocultar después de 5 segundos
+                setTimeout(function() {
+                    closeToast();
+                }, 5000);
+            }, 500);
+        });
+        
+        function closeToast() {
+            const toast = document.getElementById('welcomeToast');
+            toast.classList.remove('show');
+        }
+        
+        // Smooth scroll para la navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Cerrar toast si está abierto al navegar
+                    closeToast();
+                    
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Efecto de parallax suave en el scroll
+        let ticking = false;
+        
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    const scrolled = window.pageYOffset;
+                    const parallaxElements = document.querySelectorAll('.product-card');
+                    
+                    parallaxElements.forEach((el, index) => {
+                        const speed = 0.5;
+                        const yPos = -(scrolled * speed);
+                        el.style.transform = `translateY(${yPos * 0.05}px)`;
+                    });
+                    
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Animación de entrada para elementos cuando entran en viewport
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-title').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
