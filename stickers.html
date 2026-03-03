@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stickers - LucarShop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--color-primary:#1a3a52;--color-primary-light:#2d5f7f;--color-secondary:#4a9ece;--color-accent:#6bb8e8;--color-dark:#0f1c29;--color-gray-dark:#1e2d3d;--color-gray-medium:#3a4f63;--color-gray-light:#7a8fa5;--color-white:#fff;--color-off-white:#f0f4f8;--font-display:'Orbitron',sans-serif;--font-body:'Montserrat',sans-serif;--spacing-xs:.5rem;--spacing-sm:1rem;--spacing-md:1.5rem;--spacing-lg:2rem;--spacing-xl:3rem;--radius-sm:8px;--radius-md:12px;--radius-lg:16px;--shadow-sm:0 2px 8px rgba(0,0,0,.15);--shadow-md:0 4px 16px rgba(0,0,0,.2);--shadow-lg:0 8px 32px rgba(0,0,0,.3);--shadow-glow:0 0 20px rgba(74,158,206,.4);--transition-fast:.2s ease;--transition-medium:.3s ease;--transition-slow:.5s ease}*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--font-body);background:linear-gradient(135deg,var(--color-dark) 0%,var(--color-primary) 100%);color:var(--color-off-white);line-height:1.6;min-height:100vh;overflow-x:hidden}body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 80%,rgba(74,158,206,.08) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(107,184,232,.06) 0%,transparent 50%);pointer-events:none;z-index:0}.container{max-width:1400px;margin:0 auto;padding:0 var(--spacing-md);position:relative;z-index:1}header{background:rgba(15,28,41,.95);backdrop-filter:blur(10px);border-bottom:2px solid var(--color-primary-light);position:sticky;top:0;z-index:100;box-shadow:var(--shadow-md);animation:slideDown .6s ease}@keyframes slideDown{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}.header-container{display:flex;justify-content:space-between;align-items:center;padding:var(--spacing-md) 0}.logo{font-family:var(--font-display);font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--color-accent),var(--color-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:var(--transition-medium);animation:fadeIn .8s ease;text-decoration:none}.logo:hover{filter:brightness(1.2);transform:scale(1.05)}@keyframes fadeIn{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}nav ul{display:flex;gap:var(--spacing-lg);list-style:none;align-items:center}.menu-toggle{display:none;background:0 0;border:none;cursor:pointer;padding:var(--spacing-xs);z-index:101}.menu-toggle span{display:block;width:28px;height:3px;background:var(--color-white);margin:5px 0;transition:var(--transition-medium);border-radius:2px}.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(7px,7px)}.menu-toggle.active span:nth-child(2){opacity:0}.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}nav a{color:var(--color-off-white);text-decoration:none;font-weight:500;font-size:1rem;padding:var(--spacing-xs) var(--spacing-sm);border-radius:var(--radius-sm);transition:var(--transition-fast);position:relative;overflow:hidden}nav a::before{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--color-accent);transform:translateX(-50%);transition:var(--transition-medium)}nav a:hover::before{width:100%}nav a:hover{color:var(--color-accent);background:rgba(74,158,206,.1)}.page-header{text-align:center;padding:calc(var(--spacing-xl) * 1.5) 0 var(--spacing-xl);animation:fadeInUp .8s ease}@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}.page-header h1{font-family:var(--font-display);font-size:3rem;font-weight:900;margin-bottom:var(--spacing-md);background:linear-gradient(135deg,var(--color-white),var(--color-accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1px}.page-header p{font-size:1.2rem;color:var(--color-gray-light);max-width:700px;margin:0 auto;font-weight:300}.breadcrumb{display:flex;gap:var(--spacing-xs);align-items:center;margin-bottom:var(--spacing-lg);font-size:.9rem;color:var(--color-gray-light)}.breadcrumb a{color:var(--color-accent);text-decoration:none;transition:var(--transition-fast)}.breadcrumb a:hover{color:var(--color-white)}.breadcrumb span{color:var(--color-gray-medium)}.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--spacing-lg);margin-bottom:var(--spacing-xl)}.product-card{background:rgba(30,45,61,.6);backdrop-filter:blur(8px);border:1px solid var(--color-gray-medium);border-radius:var(--radius-lg);padding:var(--spacing-md);transition:all var(--transition-medium);cursor:pointer;position:relative;overflow:hidden;animation:fadeInScale .5s ease both}.product-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(74,158,206,.05),rgba(107,184,232,.05));opacity:0;transition:var(--transition-medium);pointer-events:none}.product-card:hover::before{opacity:1}@keyframes fadeInScale{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}.product-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg),var(--shadow-glow);border-color:var(--color-secondary)}.product-image{width:100%;height:250px;object-fit:cover;border-radius:var(--radius-md);margin-bottom:var(--spacing-md);background:var(--color-gray-dark);transition:var(--transition-medium)}.product-card:hover .product-image{transform:scale(1.05)}.product-info{padding:var(--spacing-sm) 0}.product-name{font-size:1.25rem;font-weight:600;color:var(--color-white);margin-bottom:var(--spacing-xs);font-family:var(--font-body)}.product-price{font-size:1.5rem;font-weight:700;color:var(--color-accent);margin-bottom:var(--spacing-md);font-family:var(--font-display)}.btn{display:inline-block;padding:var(--spacing-sm) var(--spacing-lg);border:none;border-radius:var(--radius-md);font-family:var(--font-body);font-weight:600;font-size:1rem;cursor:pointer;transition:all var(--transition-medium);text-decoration:none;text-align:center;position:relative;overflow:hidden}.btn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:rgba(255,255,255,.2);transform:translate(-50%,-50%);transition:width .6s,height .6s}.btn:hover::before{width:300px;height:300px}.btn-primary{background:linear-gradient(135deg,var(--color-secondary),var(--color-accent));color:var(--color-white);box-shadow:var(--shadow-sm)}.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-md),0 0 20px rgba(74,158,206,.5)}footer{background:rgba(15,28,41,.95);border-top:2px solid var(--color-primary-light);padding:var(--spacing-xl) 0 var(--spacing-lg);margin-top:var(--spacing-xl);text-align:center}footer p{color:var(--color-gray-light);font-size:.95rem}footer a{color:var(--color-accent);text-decoration:none;transition:var(--transition-fast)}footer a:hover{color:var(--color-white)}.product-card:nth-child(1){animation-delay:.1s}.product-card:nth-child(2){animation-delay:.2s}.product-card:nth-child(3){animation-delay:.3s}.product-card:nth-child(4){animation-delay:.4s}.product-card:nth-child(5){animation-delay:.5s}.product-card:nth-child(6){animation-delay:.6s}@media (max-width:768px){.menu-toggle{display:flex;flex-direction:column;justify-content:center}nav{position:fixed;top:0;right:-100%;width:280px;height:100vh;background:rgba(15,28,41,.98);backdrop-filter:blur(10px);padding:var(--spacing-xl) var(--spacing-lg);transition:right var(--transition-slow);z-index:100;box-shadow:-4px 0 20px rgba(0,0,0,.5);border-left:2px solid var(--color-primary-light)}nav.active{right:0}nav ul{flex-direction:column;gap:0;align-items:flex-start;margin-top:var(--spacing-xl)}nav li{width:100%;border-bottom:1px solid var(--color-gray-medium)}nav a{display:block;width:100%;padding:var(--spacing-md);font-size:1.1rem;border-radius:0}nav a::before{display:none}nav a:hover{background:rgba(74,158,206,.15);padding-left:calc(var(--spacing-md) + 8px)}.menu-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.6);z-index:99;opacity:0;transition:opacity var(--transition-medium)}.menu-overlay.active{display:block;opacity:1}}@media (max-width:480px){nav{width:100%}.product-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="tienda-ecommerce.html" class="logo">LucarShop</a>
+                <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="tienda-ecommerce.html#categorias">Categorías</a></li>
+                        <li><a href="cotidiano.html">Uso Cotidiano</a></li>
+                        <li><a href="pokemon.html">Pokémon</a></li>
+                        <li><a href="ropa.html">Ropa</a></li>
+                        <li><a href="legos.html">Legos</a></li>
+                        <li><a href="pines.html">Pines</a></li>
+                        <li><a href="stickers.html">Stickers</a></li>
+                        <li><a href="info.html">Info</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="container">
+        <div class="breadcrumb"><a href="tienda-ecommerce.html">Inicio</a><span>›</span><span>Stickers</span></div>
+        <div class="page-header">
+            <h1>🎨 Stickers</h1>
+            <p>Personaliza todo con nuestros stickers únicos y creativos</p>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1618854965084-faba61fb3e49?w=400&h=300&fit=crop" alt="Pack Stickers" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Pack de Stickers Pokémon (50 unid.)</h3>
+                    <p class="product-price">$12.99</p>
+                    <button class="btn btn-primary">Ver más detalles</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1610465803804-ca4fb3dc2c48?w=400&h=300&fit=crop" alt="Stickers Holográficos" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Stickers Holográficos Premium</h3>
+                    <p class="product-price">$15.99</p>
+                    <button class="btn btn-primary">Ver más detalles</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1626785774625-ddcddc3445e9?w=400&h=300&fit=crop" alt="Stickers Vinyl" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Stickers Vinyl Resistentes al Agua</h3>
+                    <p class="product-price">$9.99</p>
+                    <button class="btn btn-primary">Ver más detalles</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Stickers Anime" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Colección Stickers Anime (30 unid.)</h3>
+                    <p class="product-price">$11.99</p>
+                    <button class="btn btn-primary">Ver más detalles</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=300&fit=crop" alt="Stickers Gaming" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Pack Stickers Gaming Icons</h3>
+                    <p class="product-price">$13.99</p>
+                    <button class="btn btn-primary">Ver más detalles</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=400&h=300&fit=crop" alt="Stickers Personalizados" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Stickers Personalizados (Diseño Custom)</h3>
+                    <p class="product-price">$19.99</p>
+                    <button class="btn btn-primary">Ver más detalles</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 LucarShop. Todos los derechos reservados. | <a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a></p>
+        </div>
+    </footer>
+    <script>
+        const menuToggle=document.getElementById('menuToggle'),mainNav=document.getElementById('mainNav'),menuOverlay=document.getElementById('menuOverlay');function toggleMenu(){menuToggle.classList.toggle('active');mainNav.classList.toggle('active');menuOverlay.classList.toggle('active');document.body.style.overflow=mainNav.classList.contains('active')?'hidden':''}function closeMenu(){menuToggle.classList.remove('active');mainNav.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow=''}menuToggle.addEventListener('click',toggleMenu);menuOverlay.addEventListener('click',closeMenu);document.querySelectorAll('nav a').forEach(link=>link.addEventListener('click',closeMenu));
+    </script>
+</body>
+</html>
