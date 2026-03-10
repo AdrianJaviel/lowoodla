@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botella Térmica Premium - LucarShop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a3a52;
+            --color-primary-light: #2d5f7f;
+            --color-secondary: #4a9ece;
+            --color-accent: #6bb8e8;
+            --color-dark: #0f1c29;
+            --color-gray-dark: #1e2d3d;
+            --color-gray-medium: #3a4f63;
+            --color-gray-light: #7a8fa5;
+            --color-white: #ffffff;
+            --color-off-white: #f0f4f8;
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 20px rgba(74, 158, 206, 0.4);
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
+            color: var(--color-off-white);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(74, 158, 206, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(107, 184, 232, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(15, 28, 41, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--color-primary-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-md);
+            animation: slideDown 0.6s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md) 0;
+        }
+        
+        .logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition-medium);
+            text-decoration: none;
+        }
+        
+        .logo:hover {
+            filter: brightness(1.2);
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            gap: var(--spacing-lg);
+            list-style: none;
+            align-items: center;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--spacing-xs);
+            z-index: 101;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--color-white);
+            margin: 5px 0;
+            transition: var(--transition-medium);
+            border-radius: 2px;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        nav a {
+            color: var(--color-off-white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+            position: relative;
+        }
+        
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transform: translateX(-50%);
+            transition: var(--transition-medium);
+        }
+        
+        nav a:hover::before {
+            width: 100%;
+        }
+        
+        nav a:hover {
+            color: var(--color-accent);
+            background: rgba(74, 158, 206, 0.1);
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            gap: var(--spacing-xs);
+            align-items: center;
+            margin: var(--spacing-lg) 0;
+            font-size: 0.9rem;
+            color: var(--color-gray-light);
+        }
+        
+        .breadcrumb a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--color-white);
+        }
+        
+        .breadcrumb span {
+            color: var(--color-gray-medium);
+        }
+        
+        /* Product Detail Layout - Desktop: lado a lado, Mobile: apilado */
+        .product-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        /* Carrusel de Imágenes */
+        .product-carousel {
+            background: rgba(30, 45, 61, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--color-gray-medium);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+        }
+        
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border-radius: var(--radius-md);
+            margin: 0 auto;
+        }
+        
+        .carousel-images {
+            display: flex;
+            transition: transform var(--transition-medium);
+            height: 100%;
+        }
+        
+        .carousel-image {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: var(--color-gray-dark);
+        }
+        
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(74, 158, 206, 0.9);
+            border: none;
+            color: var(--color-white);
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all var(--transition-medium);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .carousel-button:hover {
+            background: var(--color-accent);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+        }
+        
+        .carousel-button.prev {
+            left: var(--spacing-sm);
+        }
+        
+        .carousel-button.next {
+            right: var(--spacing-sm);
+        }
+        
+        /* Thumbnails */
+        .carousel-thumbnails {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+            overflow-x: auto;
+            padding-bottom: var(--spacing-xs);
+        }
+        
+        .carousel-thumbnails::-webkit-scrollbar {
+            height: 4px;
+        }
+        
+        .carousel-thumbnails::-webkit-scrollbar-track {
+            background: var(--color-gray-dark);
+            border-radius: 2px;
+        }
+        
+        .carousel-thumbnails::-webkit-scrollbar-thumb {
+            background: var(--color-accent);
+            border-radius: 2px;
+        }
+        
+        .thumbnail {
+            min-width: 80px;
+            height: 80px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all var(--transition-fast);
+            opacity: 0.6;
+        }
+        
+        .thumbnail:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+        
+        .thumbnail.active {
+            border-color: var(--color-accent);
+            opacity: 1;
+        }
+        
+        /* Product Info */
+        .product-info {
+            background: rgba(30, 45, 61, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--color-gray-medium);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+        }
+        
+        .product-name {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+        
+        .product-price {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .product-availability {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(129, 199, 132, 0.2));
+            border: 1px solid #4caf50;
+            border-radius: var(--radius-sm);
+            color: #4caf50;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            font-size: 0.95rem;
+        }
+        
+        .product-description {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .product-description h3 {
+            font-size: 1.3rem;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+        }
+        
+        .product-description p {
+            color: var(--color-off-white);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .product-features {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .product-features h3 {
+            font-size: 1.3rem;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+        }
+        
+        .product-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .product-features li {
+            padding: var(--spacing-xs) 0;
+            padding-left: var(--spacing-lg);
+            position: relative;
+            color: var(--color-off-white);
+        }
+        
+        .product-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Action Buttons */
+        .product-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md) calc(var(--spacing-xl) * 1.2);
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all var(--transition-medium);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            color: var(--color-white);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(74, 158, 206, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(15, 28, 41, 0.95);
+            border-top: 2px solid var(--color-primary-light);
+            padding: var(--spacing-xl) 0 var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+            text-align: center;
+        }
+        
+        footer p {
+            color: var(--color-gray-light);
+            font-size: 0.95rem;
+        }
+        
+        footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        
+        footer a:hover {
+            color: var(--color-white);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(15, 28, 41, 0.98);
+                backdrop-filter: blur(10px);
+                padding: var(--spacing-xl) var(--spacing-lg);
+                transition: right var(--transition-slow);
+                z-index: 100;
+                box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+                border-left: 2px solid var(--color-primary-light);
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                align-items: flex-start;
+                margin-top: var(--spacing-xl);
+            }
+            
+            nav li {
+                width: 100%;
+                border-bottom: 1px solid var(--color-gray-medium);
+            }
+            
+            nav a {
+                display: block;
+                width: 100%;
+                padding: var(--spacing-md);
+                font-size: 1.1rem;
+                border-radius: 0;
+            }
+            
+            nav a::before {
+                display: none;
+            }
+            
+            nav a:hover {
+                background: rgba(74, 158, 206, 0.15);
+                padding-left: calc(var(--spacing-md) + 8px);
+            }
+            
+            .menu-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.6);
+                z-index: 99;
+                opacity: 0;
+                transition: opacity var(--transition-medium);
+            }
+            
+            .menu-overlay.active {
+                display: block;
+                opacity: 1;
+            }
+            
+            /* Layout en una columna - Carrusel arriba, info abajo */
+            .product-detail {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+            
+            .carousel-container {
+                max-width: 100%;
+            }
+            
+            .product-info {
+                padding: var(--spacing-lg);
+            }
+            
+            .product-name {
+                font-size: 1.75rem;
+            }
+            
+            .product-price {
+                font-size: 2rem;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                min-width: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav {
+                width: 100%;
+            }
+            
+            .carousel-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .thumbnail {
+                min-width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="tienda-ecommerce.html" class="logo">LucarShop</a>
+                
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="tienda-ecommerce.html#categorias">Categorías</a></li>
+                        <li><a href="cotidiano.html">Uso Cotidiano</a></li>
+                        <li><a href="pokemon.html">Pokémon</a></li>
+                        <li><a href="ropa.html">Ropa</a></li>
+                        <li><a href="legos.html">Legos</a></li>
+                        <li><a href="pines.html">Pines</a></li>
+                        <li><a href="stickers.html">Stickers</a></li>
+                        <li><a href="info.html">Info</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="tienda-ecommerce.html">Inicio</a>
+            <span>›</span>
+            <a href="cotidiano.html">Uso Cotidiano</a>
+            <span>›</span>
+            <span>Botella Térmica Premium</span>
+        </div>
+
+        <div class="product-detail">
+            <div class="product-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-images" id="carouselImages">
+                        <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=800&h=800&fit=crop" alt="Botella Térmica - Vista 1" class="carousel-image">
+                        <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&h=800&fit=crop" alt="Botella Térmica - Vista 2" class="carousel-image">
+                        <img src="https://images.unsplash.com/photo-1624266353522-772ea5b1dab8?w=800&h=800&fit=crop" alt="Botella Térmica - Vista 3" class="carousel-image">
+                        <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&h=800&fit=crop" alt="Botella Térmica - Vista 4" class="carousel-image">
+                    </div>
+                    
+                    <button class="carousel-button prev" id="prevBtn">‹</button>
+                    <button class="carousel-button next" id="nextBtn">›</button>
+                </div>
+                
+                <div class="carousel-thumbnails">
+                    <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=100&h=100&fit=crop" alt="Miniatura 1" class="thumbnail active" data-index="0">
+                    <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=100&h=100&fit=crop" alt="Miniatura 2" class="thumbnail" data-index="1">
+                    <img src="https://images.unsplash.com/photo-1624266353522-772ea5b1dab8?w=100&h=100&fit=crop" alt="Miniatura 3" class="thumbnail" data-index="2">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=100&h=100&fit=crop" alt="Miniatura 4" class="thumbnail" data-index="3">
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1 class="product-name">Botella Térmica Premium</h1>
+                
+                <div class="product-price">$29.99</div>
+                
+                <span class="product-availability">✓ Disponible en stock</span>
+                
+                <div class="product-description">
+                    <h3>Descripción</h3>
+                    <p>Mantén tus bebidas a la temperatura perfecta durante todo el día con nuestra Botella Térmica Premium. Diseñada con tecnología de aislamiento de doble pared, esta botella conserva bebidas frías hasta 24 horas y calientes hasta 12 horas.</p>
+                    <p>Fabricada con acero inoxidable de grado alimenticio, libre de BPA y con un acabado elegante que la hace perfecta para llevar al gimnasio, la oficina o tus aventuras al aire libre.</p>
+                </div>
+                
+                <div class="product-features">
+                    <h3>Características</h3>
+                    <ul>
+                        <li>Capacidad: 750ml / 25oz</li>
+                        <li>Material: Acero inoxidable 18/8</li>
+                        <li>Aislamiento de doble pared al vacío</li>
+                        <li>Mantiene frío hasta 24 horas</li>
+                        <li>Mantiene caliente hasta 12 horas</li>
+                        <li>Libre de BPA y toxinas</li>
+                        <li>Boca ancha para fácil limpieza</li>
+                        <li>Apto para lavavajillas</li>
+                        <li>Acabado antideslizante</li>
+                    </ul>
+                </div>
+                
+                <div class="product-actions">
+                    <button class="btn btn-primary">Agregar al Carrito</button>
+                    <button class="btn btn-secondary">Agregar a Favoritos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 LucarShop. Todos los derechos reservados. | <a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const menuOverlay = document.getElementById('menuOverlay');
+        
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            mainNav.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            mainNav.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        menuToggle.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+        document.querySelectorAll('nav a').forEach(link => link.addEventListener('click', closeMenu));
+
+        // Carrusel
+        let currentIndex = 0;
+        const carouselImages = document.getElementById('carouselImages');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const totalImages = thumbnails.length;
+
+        function updateCarousel(index) {
+            currentIndex = index;
+            carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            updateCarousel((currentIndex - 1 + totalImages) % totalImages);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            updateCarousel((currentIndex + 1) % totalImages);
+        });
+
+        thumbnails.forEach((thumb) => {
+            thumb.addEventListener('click', () => {
+                updateCarousel(parseInt(thumb.getAttribute('data-index')));
+            });
+        });
+
+        // Gestos táctiles
+        let touchStartX = 0;
+        carouselImages.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        carouselImages.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (diff > 50) updateCarousel((currentIndex + 1) % totalImages);
+            if (diff < -50) updateCarousel((currentIndex - 1 + totalImages) % totalImages);
+        });
+    </script>
+</body>
+</html>
