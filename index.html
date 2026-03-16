@@ -1,266 +1,313 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lowoodla - Tienda Online Moderna</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Estilos del carrito de compras -->
-    <link rel="stylesheet" href="cart-styles.css">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LOWOODLA — Tienda Online</title>
+  <meta name="description" content="Tienda creada para acompañarte en tu día a día y en tus gustos." />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-container">
-                <div class="logo">Lowoodla</div>
-                
-                <!-- Botón menú hamburguesa (solo visible en móvil) -->
-                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <!-- Icono del carrito -->
-                <div class="cart-icon-container" onclick="openCart()">
-                    <span class="cart-icon">🛒</span>
-                    <span class="cart-count" id="cartCount" style="display: none;">0</span>
-                </div>
-                
-                <nav id="mainNav">
-                    <ul>
-                        <li><a href="#categorias">Categorías</a></li>
-                        <li><a href="cotidiano.html">Uso Cotidiano</a></li>
-                        <li><a href="pokemon.html">Pokémon</a></li>
-                        <li><a href="ropa.html">Ropa</a></li>
-                        <li><a href="legos.html">Legos</a></li>
-                        <li><a href="pines.html">Pines</a></li>
-                        <li><a href="stickers.html">Stickers</a></li>
-                        <li><a href="info.html">Info</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
 
-    <!-- Hero Section - Mensaje de Bienvenida -->
+  <!-- ══════════════ HEADER ══════════════ -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="index.html" class="logo">LOW<span>OOD</span>LA</a>
+
+      <nav class="nav">
+        <a href="#categorias" class="nav__link">Categorías</a>
+        <a href="uso-cotidiano.html" class="nav__link">Uso Cotidiano</a>
+        <a href="pokemon.html" class="nav__link">Pokémon</a>
+        <a href="ropa.html" class="nav__link">Ropa</a>
+        <a href="legos.html" class="nav__link">Legos</a>
+        <a href="pines.html" class="nav__link">Pines</a>
+        <a href="stickers.html" class="nav__link">Stickers</a>
+        <a href="info.html" class="nav__link">Info</a>
+      </nav>
+
+      <button class="header__cart" data-open-cart aria-label="Carrito">
+        🛒 Carrito
+        <span class="cart-badge"></span>
+      </button>
+
+      <button class="hamburger" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══════════════ MOBILE NAV ══════════════ -->
+  <nav class="mobile-nav" aria-label="Navegación móvil">
+    <a href="#categorias" class="nav__link">Categorías</a>
+    <a href="uso-cotidiano.html" class="nav__link">Uso Cotidiano</a>
+    <a href="pokemon.html" class="nav__link">Pokémon</a>
+    <a href="ropa.html" class="nav__link">Ropa</a>
+    <a href="legos.html" class="nav__link">Legos</a>
+    <a href="pines.html" class="nav__link">Pines</a>
+    <a href="stickers.html" class="nav__link">Stickers</a>
+    <a href="info.html" class="nav__link">Info</a>
+    <button class="header__cart btn--ghost" data-open-cart style="margin-top:8px; border-radius:10px; padding:12px 16px; text-align:left;">
+      🛒 Ver carrito <span class="cart-badge"></span>
+    </button>
+  </nav>
+
+  <!-- ══════════════ MAIN ══════════════ -->
+  <main class="page-wrapper">
+
+    <!-- ── HERO ── -->
+    <section class="hero" aria-label="Bienvenida">
+      <div class="container">
+        <div class="hero__content">
+          <div class="hero__badge">
+            <span>✦</span> Nueva temporada disponible
+          </div>
+          <h1 class="hero__title">
+            Somos una tienda creada para<br>
+            <em>acompañarte en tu día a día</em><br>
+            y en tus gustos
+          </h1>
+          <p class="hero__desc">
+            Desde artículos de uso cotidiano hasta coleccionables especiales — encontrá todo lo que te gusta en un solo lugar, con envíos a toda Guatemala.
+          </p>
+          <div class="hero__actions">
+            <a href="#categorias" class="btn btn--primary btn--lg">
+              🛍️ Explorar la tienda
+            </a>
+            <a href="info.html" class="btn btn--outline btn--lg">
+              Conocenos
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STATS ── -->
+    <section class="section--sm" style="background: var(--bg-secondary); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+      <div class="container">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap:24px; text-align:center;">
+          <div class="fade-up">
+            <div style="font-family:var(--font-display); font-size:1.6rem; font-weight:900; color:var(--blue-light);">6+</div>
+            <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px; text-transform:uppercase; letter-spacing:0.06em;">Categorías</div>
+          </div>
+          <div class="fade-up">
+            <div style="font-family:var(--font-display); font-size:1.6rem; font-weight:900; color:var(--blue-light);">100+</div>
+            <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px; text-transform:uppercase; letter-spacing:0.06em;">Productos</div>
+          </div>
+          <div class="fade-up">
+            <div style="font-family:var(--font-display); font-size:1.6rem; font-weight:900; color:var(--blue-light);">GT</div>
+            <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px; text-transform:uppercase; letter-spacing:0.06em;">Guatemala</div>
+          </div>
+          <div class="fade-up">
+            <div style="font-family:var(--font-display); font-size:1.6rem; font-weight:900; color:var(--blue-light);">⭐ 4.9</div>
+            <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px; text-transform:uppercase; letter-spacing:0.06em;">Valoración</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CATEGORÍAS ── -->
+    <section class="section" id="categorias">
+      <div class="container">
+        <div class="section__header fade-up">
+          <p class="page-hero__eyebrow">Nuestro catálogo</p>
+          <h2 class="section__title">Nuestras Categorías</h2>
+          <p class="section__subtitle">Explorá cada sección y encontrá exactamente lo que estás buscando.</p>
+          <span class="accent-line"></span>
+        </div>
+
+        <div class="categories-grid">
+
+          <a href="uso-cotidiano.html" class="category-card fade-up">
+            <div class="cat-placeholder" role="img" aria-label="Uso cotidiano">🧴</div>
+            <div class="category-card__body">
+              <span class="category-card__name">Uso Cotidiano</span>
+              <span class="btn btn--ghost btn--sm">Explorar</span>
+            </div>
+          </a>
+
+          <a href="pokemon.html" class="category-card fade-up">
+            <div class="cat-placeholder" role="img" aria-label="Pokémon">⚡</div>
+            <div class="category-card__body">
+              <span class="category-card__name">Cartas Pokémon</span>
+              <span class="btn btn--ghost btn--sm">Explorar</span>
+            </div>
+          </a>
+
+          <a href="ropa.html" class="category-card fade-up">
+            <div class="cat-placeholder" role="img" aria-label="Ropa">👕</div>
+            <div class="category-card__body">
+              <span class="category-card__name">Ropa</span>
+              <span class="btn btn--ghost btn--sm">Explorar</span>
+            </div>
+          </a>
+
+          <a href="legos.html" class="category-card fade-up">
+            <div class="cat-placeholder" role="img" aria-label="Legos">🧱</div>
+            <div class="category-card__body">
+              <span class="category-card__name">Legos</span>
+              <span class="btn btn--ghost btn--sm">Explorar</span>
+            </div>
+          </a>
+
+          <a href="pines.html" class="category-card fade-up">
+            <div class="cat-placeholder" role="img" aria-label="Pines">📌</div>
+            <div class="category-card__body">
+              <span class="category-card__name">Pines</span>
+              <span class="btn btn--ghost btn--sm">Explorar</span>
+            </div>
+          </a>
+
+          <a href="stickers.html" class="category-card fade-up">
+            <div class="cat-placeholder" role="img" aria-label="Stickers">🎨</div>
+            <div class="category-card__body">
+              <span class="category-card__name">Stickers</span>
+              <span class="btn btn--ghost btn--sm">Explorar</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DESTACADOS ── -->
+    <section class="section" style="background: var(--bg-secondary); border-top:1px solid var(--border);">
+      <div class="container">
+        <div class="section__header fade-up">
+          <p class="page-hero__eyebrow">Lo más buscado</p>
+          <h2 class="section__title">Productos Destacados</h2>
+          <span class="accent-line"></span>
+        </div>
+        <div class="products-grid">
+
+          <div class="product-card fade-up">
+            <div class="product-card__img-wrap">
+              <div class="product-placeholder">🍶</div>
+              <span class="product-card__badge">Popular</span>
+            </div>
+            <div class="product-card__body">
+              <div class="product-card__name">Botella Térmica Premium</div>
+              <div class="product-card__price">Q185</div>
+            </div>
+            <div class="product-card__footer">
+              <a href="producto-detalle.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-up">
+            <div class="product-card__img-wrap">
+              <div class="product-placeholder">⚡</div>
+              <span class="product-card__badge">Nuevo</span>
+            </div>
+            <div class="product-card__body">
+              <div class="product-card__name">Pack Cartas Pokémon Booster</div>
+              <div class="product-card__price">Q95</div>
+            </div>
+            <div class="product-card__footer">
+              <a href="pokemon.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-up">
+            <div class="product-card__img-wrap">
+              <div class="product-placeholder">🎨</div>
+            </div>
+            <div class="product-card__body">
+              <div class="product-card__name">Sticker Pack Holográfico x10</div>
+              <div class="product-card__price">Q45</div>
+            </div>
+            <div class="product-card__footer">
+              <a href="stickers.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-up">
+            <div class="product-card__img-wrap">
+              <div class="product-placeholder">🧱</div>
+              <span class="product-card__badge">Oferta</span>
+            </div>
+            <div class="product-card__body">
+              <div class="product-card__name">Set Lego Creator Mini City</div>
+              <div class="product-card__price">Q320</div>
+            </div>
+            <div class="product-card__footer">
+              <a href="legos.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA BANNER ── -->
+    <section class="section--sm">
+      <div class="container">
+        <div class="fade-up" style="background: linear-gradient(135deg, var(--bg-card) 0%, rgba(29,78,216,0.18) 100%); border:1px solid var(--border-hover); border-radius:var(--radius-xl); padding:40px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+          <div>
+            <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:700; letter-spacing:0.04em; margin-bottom:8px;">¿Querés recibir novedades?</h3>
+            <p style="color:var(--text-secondary); font-size:0.9rem;">Seguinos en redes sociales para enterarte de las últimas llegadas.</p>
+          </div>
+          <a href="https://wa.me/50259151412?text=Hola%20LOWOODLA%2C%20quiero%20hacer%20una%20consulta%20%F0%9F%91%8B" target="_blank" class="btn btn--primary">Contactanos 📲</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="footer">
     <div class="container">
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Somos una tienda creada para acompañarte en tu día a día y en tus gustos</h1>
-                <p>Aquí encontrarás productos de uso cotidiano, coleccionables, ropa y artículos especiales pensados para fans y personas que buscan algo diferente.</p>
-                <a href="#categorias" class="btn btn-primary">Explorar la tienda</a>
-            </div>
-        </section>
-
-        <!-- Sección de Categorías -->
-        <section id="categorias" class="categories-section">
-            <h2 class="section-title">Nuestras Categorías</h2>
-            <div class="categories-grid">
-                <div class="category-card">
-                    <img src="img/pachongat.jpeg" alt="Uso Cotidiano" class="category-image">
-                    <h3>Uso Cotidiano</h3>
-                    <a href="cotidiano.html" class="btn btn-primary">Explorar</a>
-                </div>
-                
-                <div class="category-card">
-                    <img src="img/tar_pok.jpeg" alt="Cartas Pokémon" class="category-image">
-                    <h3>Cartas Pokémon</h3>
-                    <a href="pokemon.html" class="btn btn-primary">Explorar</a>
-                </div>
-                
-                <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=300&h=200&fit=crop" alt="Ropa" class="category-image">
-                    <h3>Ropa</h3>
-                    <a href="ropa.html" class="btn btn-primary">Explorar</a>
-                </div>
-                
-                <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=300&h=200&fit=crop" alt="Legos" class="category-image">
-                    <h3>Legos</h3>
-                    <a href="legos.html" class="btn btn-primary">Explorar</a>
-                </div>
-                
-                <div class="category-card">
-                    <img src="img/pines.jpeg" alt="Pines" class="category-image">
-                    <h3>Pines</h3>
-                    <a href="pines.html" class="btn btn-primary">Explorar</a>
-                </div>
-                
-                <div class="category-card">
-                    <img src="img/stickers.jpeg" alt="Stickers" class="category-image">
-                    <h3>Stickers</h3>
-                    <a href="stickers.html" class="btn btn-primary">Explorar</a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Lowoodla. Todos los derechos reservados. | <a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a></p>
+      <div class="footer__inner">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <div class="logo" style="font-size:1.1rem;">LOW<span>OOD</span>LA</div>
+            <p class="footer__tagline">Tu tienda de artículos cotidianos y coleccionables en Guatemala.</p>
+          </div>
+          <nav class="footer__nav" aria-label="Categorías">
+            <div class="footer__nav-title">Categorías</div>
+            <a href="uso-cotidiano.html">Uso Cotidiano</a>
+            <a href="pokemon.html">Pokémon</a>
+            <a href="ropa.html">Ropa</a>
+            <a href="legos.html">Legos</a>
+            <a href="pines.html">Pines</a>
+            <a href="stickers.html">Stickers</a>
+          </nav>
+          <nav class="footer__nav" aria-label="Sitio">
+            <div class="footer__nav-title">Sitio</div>
+            <a href="index.html">Inicio</a>
+            <a href="info.html">Info</a>
+          </nav>
         </div>
-    </footer>
-
-    <!-- Overlay del menú (para cerrar al hacer click fuera) -->
-    <div class="menu-overlay" id="menuOverlay"></div>
-
-    <!-- Toast de Bienvenida -->
-    <div class="welcome-toast" id="welcomeToast">
-        <span>¡Disfruta tu visita en nuestra tienda!</span>
-        <button class="close-toast" onclick="closeToast()">×</button>
-    </div>
-
-    <script>
-        // Funcionalidad del menú hamburguesa
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const navLinks = document.querySelectorAll('nav a');
-        
-        function toggleMenu() {
-            menuToggle.classList.toggle('active');
-            mainNav.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            
-            // Prevenir scroll del body cuando el menú está abierto
-            if (mainNav.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-        }
-        
-        function closeMenu() {
-            menuToggle.classList.remove('active');
-            mainNav.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        // Event listeners para el menú
-        menuToggle.addEventListener('click', toggleMenu);
-        menuOverlay.addEventListener('click', closeMenu);
-        
-        // Cerrar menú al hacer click en cualquier enlace
-        navLinks.forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
-        
-        // Toast de bienvenida
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                const toast = document.getElementById('welcomeToast');
-                toast.classList.add('show');
-                
-                // Auto-ocultar después de 5 segundos
-                setTimeout(function() {
-                    closeToast();
-                }, 5000);
-            }, 500);
-        });
-        
-        function closeToast() {
-            const toast = document.getElementById('welcomeToast');
-            toast.classList.remove('show');
-        }
-        
-        // Smooth scroll para la navegación
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    // Cerrar toast si está abierto al navegar
-                    closeToast();
-                    
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Efecto de parallax suave en el scroll
-        let ticking = false;
-        
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                window.requestAnimationFrame(function() {
-                    const scrolled = window.pageYOffset;
-                    const parallaxElements = document.querySelectorAll('.product-card');
-                    
-                    parallaxElements.forEach((el, index) => {
-                        const speed = 0.5;
-                        const yPos = -(scrolled * speed);
-                        el.style.transform = `translateY(${yPos * 0.05}px)`;
-                    });
-                    
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
-
-        // Animación de entrada para elementos cuando entran en viewport
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.section-title').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
-
-    <!-- Modal del Carrito de Compras -->
-    <div id="cartModal" class="cart-modal">
-        <div class="cart-modal-content">
-            <div class="cart-modal-header">
-                <h2>🛒 Mi Carrito</h2>
-                <button class="close-cart-btn" onclick="closeCart()">×</button>
-            </div>
-            
-            <div class="cart-modal-body">
-                <div id="emptyCartMessage" class="empty-cart-message">
-                    <div class="empty-cart-icon">🛒</div>
-                    <p>Tu carrito está vacío</p>
-                </div>
-                <div id="cartItemsContainer"></div>
-            </div>
-            
-            <div class="cart-modal-footer">
-                <div class="cart-total-section">
-                    <span class="cart-total-label">Total:</span>
-                    <span class="cart-total-amount" id="cartTotal">$0.00</span>
-                </div>
-                <div class="cart-actions" id="cartActions" style="display: none;">
-                    <button class="cart-btn cart-btn-primary" onclick="generateInvoice()">📱 Generar Boleta y Enviar</button>
-                    <button class="cart-btn cart-btn-secondary" onclick="cart.clearCart(); closeCart();">Vaciar Carrito</button>
-                </div>
-            </div>
+        <div class="footer__bottom">
+          <p class="footer__copy">© 2025 LOWOODLA. Todos los derechos reservados.</p>
+          <p class="footer__copy">Hecho con ❤️ en Guatemala</p>
         </div>
+      </div>
     </div>
+  </footer>
 
-    <!-- JavaScript del Sistema de Carrito -->
-    <script src="cart.js"></script>
+  <!-- ══════════════ CARRITO ══════════════ -->
+  <div class="cart-overlay" aria-hidden="true"></div>
+  <aside class="cart-panel" aria-label="Carrito de compras">
+    <div class="cart-panel__header">
+      <span class="cart-panel__title">🛒 Tu Carrito</span>
+      <button class="cart-close" aria-label="Cerrar carrito">✕</button>
+    </div>
+    <div class="cart-panel__body"></div>
+    <div class="cart-panel__footer">
+      <div class="cart-total">
+        <span class="cart-total__label">Total:</span>
+        <span class="cart-total__val">Q0.00</span>
+      </div>
+      <button class="btn btn--primary btn--full" onclick="showToast('Función de pago próximamente 🚀', 'info')">
+        Proceder al pago
+      </button>
+    </div>
+  </aside>
+
+  <!-- Back to top -->
+  <button class="back-top" aria-label="Volver arriba">↑</button>
+
+  <script src="script.js"></script>
 </body>
 </html>

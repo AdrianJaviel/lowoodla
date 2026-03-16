@@ -1,581 +1,513 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Información - LucarShop</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-primary: #1a3a52;
-            --color-primary-light: #2d5f7f;
-            --color-secondary: #4a9ece;
-            --color-accent: #6bb8e8;
-            --color-dark: #0f1c29;
-            --color-gray-dark: #1e2d3d;
-            --color-gray-medium: #3a4f63;
-            --color-gray-light: #7a8fa5;
-            --color-white: #ffffff;
-            --color-off-white: #f0f4f8;
-            --font-display: 'Orbitron', sans-serif;
-            --font-body: 'Montserrat', sans-serif;
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 1.5rem;
-            --spacing-lg: 2rem;
-            --spacing-xl: 3rem;
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
-            --shadow-glow: 0 0 20px rgba(74, 158, 206, 0.4);
-            --transition-fast: 0.2s ease;
-            --transition-medium: 0.3s ease;
-            --transition-slow: 0.5s ease;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: var(--font-body);
-            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
-            color: var(--color-off-white);
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 80%, rgba(74, 158, 206, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(107, 184, 232, 0.06) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-md);
-            position: relative;
-            z-index: 1;
-        }
-        
-        header {
-            background: rgba(15, 28, 41, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid var(--color-primary-light);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow-md);
-            animation: slideDown 0.6s ease;
-        }
-        
-        @keyframes slideDown {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: var(--spacing-md) 0;
-        }
-        
-        .logo {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition-medium);
-            animation: fadeIn 0.8s ease;
-            text-decoration: none;
-        }
-        
-        .logo:hover {
-            filter: brightness(1.2);
-            transform: scale(1.05);
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        nav ul {
-            display: flex;
-            gap: var(--spacing-lg);
-            list-style: none;
-            align-items: center;
-        }
-        
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: var(--spacing-xs);
-            z-index: 101;
-        }
-        
-        .menu-toggle span {
-            display: block;
-            width: 28px;
-            height: 3px;
-            background: var(--color-white);
-            margin: 5px 0;
-            transition: var(--transition-medium);
-            border-radius: 2px;
-        }
-        
-        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
-        .menu-toggle.active span:nth-child(2) { opacity: 0; }
-        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
-        
-        nav a {
-            color: var(--color-off-white);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--radius-sm);
-            transition: var(--transition-fast);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        nav a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--color-accent);
-            transform: translateX(-50%);
-            transition: var(--transition-medium);
-        }
-        
-        nav a:hover::before { width: 100%; }
-        nav a:hover {
-            color: var(--color-accent);
-            background: rgba(74, 158, 206, 0.1);
-        }
-        
-        .page-header {
-            text-align: center;
-            padding: calc(var(--spacing-xl) * 1.5) 0 var(--spacing-xl);
-            animation: fadeInUp 0.8s ease;
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .page-header h1 {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: var(--spacing-md);
-            background: linear-gradient(135deg, var(--color-white), var(--color-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 1px;
-        }
-        
-        .page-header p {
-            font-size: 1.2rem;
-            color: var(--color-gray-light);
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-        
-        .breadcrumb {
-            display: flex;
-            gap: var(--spacing-xs);
-            align-items: center;
-            margin-bottom: var(--spacing-lg);
-            font-size: 0.9rem;
-            color: var(--color-gray-light);
-        }
-        
-        .breadcrumb a {
-            color: var(--color-accent);
-            text-decoration: none;
-            transition: var(--transition-fast);
-        }
-        
-        .breadcrumb a:hover { color: var(--color-white); }
-        .breadcrumb span { color: var(--color-gray-medium); }
-        
-        .info-section {
-            background: rgba(30, 45, 61, 0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--color-gray-medium);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-xl);
-            margin-bottom: var(--spacing-lg);
-            animation: fadeInScale 0.5s ease both;
-        }
-        
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        .info-section:nth-child(2) { animation-delay: 0.1s; }
-        .info-section:nth-child(3) { animation-delay: 0.2s; }
-        .info-section:nth-child(4) { animation-delay: 0.3s; }
-        .info-section:nth-child(5) { animation-delay: 0.4s; }
-        
-        .info-section h2 {
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            color: var(--color-accent);
-            margin-bottom: var(--spacing-md);
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-        }
-        
-        .info-section h3 {
-            font-size: 1.3rem;
-            color: var(--color-white);
-            margin-top: var(--spacing-md);
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .info-section p {
-            color: var(--color-off-white);
-            margin-bottom: var(--spacing-sm);
-            line-height: 1.8;
-        }
-        
-        .info-section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .info-section li {
-            padding: var(--spacing-xs) 0;
-            padding-left: var(--spacing-lg);
-            position: relative;
-            color: var(--color-off-white);
-        }
-        
-        .info-section li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--color-accent);
-            font-weight: bold;
-        }
-        
-        .contact-box {
-            background: linear-gradient(135deg, rgba(74, 158, 206, 0.1), rgba(107, 184, 232, 0.1));
-            border: 2px solid var(--color-accent);
-            border-radius: var(--radius-md);
-            padding: var(--spacing-lg);
-            margin-top: var(--spacing-lg);
-        }
-        
-        .contact-box h3 {
-            color: var(--color-accent);
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .contact-box p {
-            margin-bottom: var(--spacing-xs);
-        }
-        
-        footer {
-            background: rgba(15, 28, 41, 0.95);
-            border-top: 2px solid var(--color-primary-light);
-            padding: var(--spacing-xl) 0 var(--spacing-lg);
-            margin-top: var(--spacing-xl);
-            text-align: center;
-        }
-        
-        footer p {
-            color: var(--color-gray-light);
-            font-size: 0.95rem;
-        }
-        
-        footer a {
-            color: var(--color-accent);
-            text-decoration: none;
-            transition: var(--transition-fast);
-        }
-        
-        footer a:hover { color: var(--color-white); }
-        
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-            
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 280px;
-                height: 100vh;
-                background: rgba(15, 28, 41, 0.98);
-                backdrop-filter: blur(10px);
-                padding: var(--spacing-xl) var(--spacing-lg);
-                transition: right var(--transition-slow);
-                z-index: 100;
-                box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
-                border-left: 2px solid var(--color-primary-light);
-            }
-            
-            nav.active { right: 0; }
-            
-            nav ul {
-                flex-direction: column;
-                gap: 0;
-                align-items: flex-start;
-                margin-top: var(--spacing-xl);
-            }
-            
-            nav li {
-                width: 100%;
-                border-bottom: 1px solid var(--color-gray-medium);
-            }
-            
-            nav a {
-                display: block;
-                width: 100%;
-                padding: var(--spacing-md);
-                font-size: 1.1rem;
-                border-radius: 0;
-            }
-            
-            nav a::before { display: none; }
-            
-            nav a:hover {
-                background: rgba(74, 158, 206, 0.15);
-                padding-left: calc(var(--spacing-md) + 8px);
-            }
-            
-            .menu-overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background: rgba(0, 0, 0, 0.6);
-                z-index: 99;
-                opacity: 0;
-                transition: opacity var(--transition-medium);
-            }
-            
-            .menu-overlay.active {
-                display: block;
-                opacity: 1;
-            }
-            
-            .page-header h1 { font-size: 2rem; }
-            .info-section { padding: var(--spacing-lg); }
-        }
-        
-        @media (max-width: 480px) {
-            nav { width: 100%; }
-            .page-header h1 { font-size: 1.75rem; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Info — LOWOODLA</title>
+  <meta name="description" content="Conocé más sobre LOWOODLA, nuestra misión, visión y cómo contactarnos." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Hero info ── */
+    .info-hero {
+      position: relative;
+      padding: 72px 0 56px;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(29,78,216,0.18) 0%, transparent 65%),
+        linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .info-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .info-hero__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .info-hero__logo-block {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .info-hero__logo {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1;
+    }
+    .info-hero__logo span { color: var(--blue-light); }
+    .info-hero__tagline {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 380px;
+      line-height: 1.7;
+    }
+    .info-hero__stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .stat-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-chip__val {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--blue-light);
+    }
+    .stat-chip__label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+    }
+
+    /* ── Timeline ── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      padding-left: 28px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px; top: 8px; bottom: 8px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--blue-mid), transparent);
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 28px 24px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -21px; top: 6px;
+      width: 10px; height: 10px;
+      background: var(--blue-light);
+      border-radius: 50%;
+      border: 2px solid var(--bg-primary);
+      box-shadow: 0 0 8px rgba(59,130,246,0.5);
+    }
+    .timeline-item__year {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--blue-light);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .timeline-item__title {
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .timeline-item__desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── Social links ── */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+      gap: 14px;
+    }
+    .social-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .social-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+    }
+    .social-card__icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .social-card__label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .social-card__handle {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: left;
+      transition: background var(--transition);
+      gap: 12px;
+    }
+    .faq-question:hover { background: var(--blue-glow); }
+    .faq-arrow {
+      font-size: 0.8rem;
+      color: var(--blue-light);
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s ease;
+      padding: 0 20px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      padding: 0 20px 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .info-hero__inner { grid-template-columns: 1fr; gap: 32px; }
+      .info-hero__stats { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-container">
-                <a href="tienda-ecommerce.html" class="logo">LucarShop</a>
-                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <nav id="mainNav">
-                    <ul>
-                        <li><a href="tienda-ecommerce.html#categorias">Categorías</a></li>
-                        <li><a href="cotidiano.html">Uso Cotidiano</a></li>
-                        <li><a href="pokemon.html">Pokémon</a></li>
-                        <li><a href="ropa.html">Ropa</a></li>
-                        <li><a href="legos.html">Legos</a></li>
-                        <li><a href="pines.html">Pines</a></li>
-                        <li><a href="stickers.html">Stickers</a></li>
-                        <li><a href="info.html">Info</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
 
-    <div class="menu-overlay" id="menuOverlay"></div>
-
-    <div class="container">
-        <div class="breadcrumb">
-            <a href="tienda-ecommerce.html">Inicio</a>
-            <span>›</span>
-            <span>Información</span>
-        </div>
-
-        <div class="page-header">
-            <h1>ℹ️ Información</h1>
-            <p>Todo lo que necesitas saber sobre compras, envíos y más</p>
-        </div>
-
-        <div class="info-section">
-            <h2>🛒 Cómo Comprar</h2>
-            <p>Comprar en LucarShop es fácil y seguro. Sigue estos sencillos pasos:</p>
-            <ul>
-                <li>Navega por nuestras categorías y explora los productos disponibles</li>
-                <li>Haz clic en "Ver más detalles" para conocer las especificaciones del producto</li>
-                <li>Agrega los productos que desees a tu carrito de compras</li>
-                <li>Revisa tu pedido y procede al checkout</li>
-                <li>Completa tus datos de envío y pago</li>
-                <li>Confirma tu pedido y recibirás un correo de confirmación</li>
-            </ul>
-        </div>
-
-        <div class="info-section">
-            <h2>📦 Envíos y Entregas</h2>
-            
-            <h3>Tiempos de entrega</h3>
-            <ul>
-                <li><strong>Envío estándar:</strong> 5-7 días hábiles</li>
-                <li><strong>Envío express:</strong> 2-3 días hábiles</li>
-                <li><strong>Envío local (Ciudad de Guatemala):</strong> 1-2 días hábiles</li>
-            </ul>
-            
-            <h3>Costos de envío</h3>
-            <ul>
-                <li>Envío gratis en compras superiores a Q.300</li>
-                <li>Envío estándar: Q.25 - Q.45 según ubicación</li>
-                <li>Envío express: Q.75 - Q.95 según ubicación</li>
-            </ul>
-            
-            <h3>Cobertura</h3>
-            <p>Realizamos envíos a toda Guatemala. Para zonas alejadas o rurales, el tiempo de entrega puede extenderse de 1 a 3 días adicionales.</p>
-        </div>
-
-        <div class="info-section">
-            <h2>💳 Métodos de Pago</h2>
-            <p>Aceptamos múltiples formas de pago para tu comodidad:</p>
-            
-            <h3>Pagos en línea</h3>
-            <ul>
-                <li>Tarjetas de crédito (Visa, Mastercard, American Express)</li>
-                <li>Tarjetas de débito</li>
-                <li>Transferencias bancarias</li>
-                <li>Billeteras digitales (PayPal, etc.)</li>
-            </ul>
-            
-            <h3>Pago contra entrega</h3>
-            <p>Disponible para la Ciudad de Guatemala y municipios cercanos. Puedes pagar en efectivo o con tarjeta al momento de recibir tu pedido.</p>
-            
-            <h3>Depósito bancario</h3>
-            <p>Realiza un depósito o transferencia a nuestra cuenta bancaria y envíanos el comprobante para procesar tu pedido.</p>
-        </div>
-
-        <div class="info-section">
-            <h2>↩️ Devoluciones y Cambios</h2>
-            
-            <h3>Política de devoluciones</h3>
-            <p>Tienes 30 días desde la fecha de recepción para solicitar una devolución o cambio.</p>
-            
-            <h3>Condiciones</h3>
-            <ul>
-                <li>El producto debe estar en su empaque original</li>
-                <li>No debe haber sido usado ni mostrar señales de desgaste</li>
-                <li>Debe incluir todos los accesorios y documentación original</li>
-                <li>Los productos coleccionables sellados no pueden ser devueltos una vez abiertos</li>
-            </ul>
-            
-            <h3>Proceso de devolución</h3>
-            <ul>
-                <li>Contacta a nuestro servicio al cliente</li>
-                <li>Proporciona tu número de pedido y motivo de devolución</li>
-                <li>Envía el producto a nuestra dirección</li>
-                <li>Una vez recibido y verificado, procesaremos tu reembolso en 5-7 días hábiles</li>
-            </ul>
-        </div>
-
-        <div class="info-section">
-            <h2>📞 Contacto y Soporte</h2>
-            <p>¿Tienes preguntas o necesitas ayuda? Estamos aquí para ti.</p>
-            
-            <div class="contact-box">
-                <h3>Servicio al Cliente</h3>
-                <p><strong>Email:</strong> soporte@lucarshop.com</p>
-                <p><strong>WhatsApp:</strong> +502 1234-5678</p>
-                <p><strong>Teléfono:</strong> +502 2345-6789</p>
-                <p><strong>Horario:</strong> Lunes a Viernes, 9:00 AM - 6:00 PM</p>
-                <p><strong>Sábados:</strong> 9:00 AM - 1:00 PM</p>
-            </div>
-            
-            <h3>Redes Sociales</h3>
-            <p>Síguenos en nuestras redes sociales para estar al día con novedades, promociones y lanzamientos:</p>
-            <ul>
-                <li>Facebook: @LucarShopGT</li>
-                <li>Instagram: @lucarshop_gt</li>
-                <li>TikTok: @lucarshop</li>
-            </ul>
-        </div>
+  <!-- ══════════════ HEADER ══════════════ -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="index.html" class="logo">LOW<span>OOD</span>LA</a>
+      <nav class="nav">
+        <a href="index.html#categorias" class="nav__link">Categorías</a>
+        <a href="uso-cotidiano.html" class="nav__link">Uso Cotidiano</a>
+        <a href="pokemon.html" class="nav__link">Pokémon</a>
+        <a href="ropa.html" class="nav__link">Ropa</a>
+        <a href="legos.html" class="nav__link">Legos</a>
+        <a href="pines.html" class="nav__link">Pines</a>
+        <a href="stickers.html" class="nav__link">Stickers</a>
+        <a href="info.html" class="nav__link active">Info</a>
+      </nav>
+      <button class="header__cart" data-open-cart aria-label="Carrito">
+        🛒 Carrito <span class="cart-badge"></span>
+      </button>
+      <button class="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </header>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 LucarShop. Todos los derechos reservados. | <a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a></p>
+  <!-- ══════════════ MOBILE NAV ══════════════ -->
+  <nav class="mobile-nav">
+    <a href="index.html#categorias" class="nav__link">Categorías</a>
+    <a href="uso-cotidiano.html" class="nav__link">Uso Cotidiano</a>
+    <a href="pokemon.html" class="nav__link">Pokémon</a>
+    <a href="ropa.html" class="nav__link">Ropa</a>
+    <a href="legos.html" class="nav__link">Legos</a>
+    <a href="pines.html" class="nav__link">Pines</a>
+    <a href="stickers.html" class="nav__link">Stickers</a>
+    <a href="info.html" class="nav__link active">Info</a>
+    <button class="header__cart btn--ghost" data-open-cart style="margin-top:8px;border-radius:10px;padding:12px 16px;text-align:left;">
+      🛒 Ver carrito <span class="cart-badge"></span>
+    </button>
+  </nav>
+
+  <!-- ══════════════ MAIN ══════════════ -->
+  <main class="page-wrapper">
+
+    <!-- ── HERO INFO ── -->
+    <section class="info-hero">
+      <div class="container">
+        <div class="info-hero__inner">
+          <div class="info-hero__logo-block fade-up">
+            <div class="info-hero__logo">LOW<span>OOD</span>LA</div>
+            <p class="info-hero__tagline">
+              Somos una tienda guatemalteca creada para acompañarte en tu día a día y en tus gustos — desde artículos cotidianos hasta coleccionables que amás.
+            </p>
+            <a href="index.html#categorias" class="btn btn--primary" style="width:fit-content;">
+              🛍️ Ver la tienda
+            </a>
+          </div>
+  
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const navLinks = document.querySelectorAll('nav a');
-        
-        function toggleMenu() {
-            menuToggle.classList.toggle('active');
-            mainNav.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
-        }
-        
-        function closeMenu() {
-            menuToggle.classList.remove('active');
-            mainNav.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        menuToggle.addEventListener('click', toggleMenu);
-        menuOverlay.addEventListener('click', closeMenu);
-        navLinks.forEach(link => link.addEventListener('click', closeMenu));
-    </script>
+    <!-- ── MISIÓN Y VISIÓN ── -->
+    <section class="section">
+      <div class="container">
+        <div class="section__header fade-up">
+          <p class="page-hero__eyebrow">Quiénes somos</p>
+          <h2 class="section__title">Nuestra Identidad</h2>
+          <span class="accent-line"></span>
+        </div>
+        <div class="info-grid">
+          <div class="info-card fade-up">
+            <div class="info-card__icon">🎯</div>
+            <div class="info-card__title">Misión</div>
+            <p class="info-card__text">
+             Ofrecer productos que a las personas realmente les gusten y quieran comprar. Buscamos reunir en un solo lugar artículos útiles, curiosos y con estilo para el día a día.
+            </p>
+          </div>
+          <div class="info-card fade-up">
+            <div class="info-card__icon">🚀</div>
+            <div class="info-card__title">Visión</div>
+            <p class="info-card__text">
+Ser una tienda online reconocida en Guatemala por ofrecer productos interesantes, accesibles y que conecten con los gustos de nuestra comunidad.            </p>
+          </div>
+          <div class="info-card fade-up">
+            <div class="info-card__icon">💎</div>
+            <div class="info-card__title">Valores</div>
+            <p class="info-card__text">
+              Honestidad en cada transacción. Calidad en cada producto que elegimos. Cercanía con nuestra comunidad. Pasión por lo que hacemos. Creemos que comprar algo que te gusta Honestidad, buena atención y productos que realmente valgan la pena. Creemos que siempre debe haber algo que te guste y puedas llevar contigo.debería ser una experiencia simple, confiable y satisfactoria de principio a fin.
+            </p>
+          </div>
+          <div class="info-card fade-up">
+            <div class="info-card__icon">🛍️</div>
+            <div class="info-card__title">Nuestra Historia</div>
+            <p class="info-card__text">
+LOWOODLA nació con la idea de vender cosas que a la gente le llamen la atención. No todo es de marca, pero siempre buscamos ofrecer algo que pueda gustarte y que quieras comprar.            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ── CONTACTO ── -->
+    <section class="section">
+      <div class="container">
+        <div class="section__header fade-up text-center">
+          <p class="page-hero__eyebrow">Hablemos</p>
+          <h2 class="section__title">Contacto</h2>
+          <p class="section__subtitle" style="margin:0 auto;">¿Tenés alguna consulta, pedido especial o simplemente querés saludarnos? Estamos para vos.</p>
+          <span class="accent-line" style="margin:12px auto 0;"></span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:40px;">
+
+          <!-- Canales de contacto -->
+          <div class="contact-block fade-up">
+            <div style="font-family:var(--font-display); font-size:0.8rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--blue-light); margin-bottom:4px;">Canales directos</div>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">📱</div>
+              <div>
+                <div class="contact-item__label">WhatsApp</div>
+                <div class="contact-item__val"><a href="https://wa.me/50259151412?text=Hola%20LOWOODLA%2C%20quiero%20hacer%20una%20consulta%20%F0%9F%91%8B" target="_blank" style="color:var(--blue-light);">+502 5915-1412</a></div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">📸</div>
+              <div>
+                <div class="contact-item__label">Instagram</div>
+                <div class="contact-item__val">--------</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">🎵</div>
+              <div>
+                <div class="contact-item__label">TikTok</div>
+                <div class="contact-item__val">--------</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">✉️</div>
+              <div>
+                <div class="contact-item__label">Correo</div>
+                <div class="contact-item__val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e0838f8e948183948fa08c8f978f8f848c81ce8794">--------</a></div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">📍</div>
+              <div>
+                <div class="contact-item__label">Ubicación</div>
+                <div class="contact-item__val">Guatemala City, GT</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Redes sociales cards -->
+          <div class="fade-up" style="display:flex; flex-direction:column; gap:16px;">
+            <div style="font-family:var(--font-display); font-size:0.8rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--blue-light);">Seguinos en redes</div>
+            <div class="social-grid">
+              <a href="#" class="social-card" aria-label="Instagram de LOWOODLA">
+                <div class="social-card__icon">📸</div>
+                <div>
+                  <div class="social-card__label">Instagram</div>
+                  <div class="social-card__handle">--------</div>
+                </div>
+              </a>
+              <a href="#" class="social-card" aria-label="TikTok de LOWOODLA">
+                <div class="social-card__icon">🎵</div>
+                <div>
+                  <div class="social-card__label">TikTok</div>
+                  <div class="social-card__handle">--------</div>
+                </div>
+              </a>
+              <a href="#" class="social-card" aria-label="Facebook de LOWOODLA">
+                <div class="social-card__icon">📘</div>
+                <div>
+                  <div class="social-card__label">Facebook</div>
+                  <div class="social-card__handle">--------</div>
+                </div>
+              </a>
+              <a href="https://wa.me/50259151412?text=Hola%20LOWOODLA%2C%20quiero%20hacer%20una%20consulta%20%F0%9F%91%8B" target="_blank" class="social-card" aria-label="WhatsApp de LOWOODLA">
+                <div class="social-card__icon">💬</div>
+                <div>
+                  <div class="social-card__label">WhatsApp</div>
+                  <div class="social-card__handle">Escribinos</div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Horario -->
+            <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-md); padding:20px;">
+              <div style="font-family:var(--font-display); font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); margin-bottom:12px;">Horario de atención</div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <div style="display:flex; justify-content:space-between; font-size:0.88rem;">
+                  <span style="color:var(--text-secondary);">Lunes — Viernes</span>
+                  <span style="color:var(--text-primary); font-weight:600;">8:30 — 22:00</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:0.88rem;">
+                  <span style="color:var(--text-secondary);">Sábado</span>
+                  <span style="color:var(--text-primary); font-weight:600;">8:00 - 17:00</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:0.88rem;">
+                  <span style="color:var(--text-secondary);">Domingo</span>
+                  <span style="color:var(--text-muted);">Cerrado</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA FINAL ── -->
+    <section class="section--sm" style="background:var(--bg-secondary); border-top:1px solid var(--border);">
+      <div class="container">
+        <div class="fade-up" style="text-align:center; max-width:560px; margin:0 auto;">
+          <h3 style="font-family:var(--font-display); font-size:1.3rem; font-weight:700; letter-spacing:0.04em; margin-bottom:12px;">
+            ¿Listo para explorar?
+          </h3>
+          <p style="color:var(--text-secondary); font-size:0.93rem; margin-bottom:24px;">
+            Revisá todas nuestras categorías y encontrá algo que te encante.
+          </p>
+          <a href="index.html#categorias" class="btn btn--primary btn--lg">
+            🛍️ Ir a la tienda
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <div class="logo" style="font-size:1.1rem;">LOW<span>OOD</span>LA</div>
+            <p class="footer__tagline">Tu tienda de artículos cotidianos y coleccionables en Guatemala.</p>
+          </div>
+          <nav class="footer__nav">
+            <div class="footer__nav-title">Categorías</div>
+            <a href="uso-cotidiano.html">Uso Cotidiano</a>
+            <a href="pokemon.html">Pokémon</a>
+            <a href="ropa.html">Ropa</a>
+            <a href="legos.html">Legos</a>
+            <a href="pines.html">Pines</a>
+            <a href="stickers.html">Stickers</a>
+          </nav>
+          <nav class="footer__nav">
+            <div class="footer__nav-title">Sitio</div>
+            <a href="index.html">Inicio</a>
+            <a href="info.html">Info</a>
+          </nav>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copy">© 2025 LOWOODLA. Todos los derechos reservados.</p>
+          <p class="footer__copy">Hecho con ❤️ en Guatemala</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════ CARRITO ══════════════ -->
+  <div class="cart-overlay"></div>
+  <aside class="cart-panel" aria-label="Carrito de compras">
+    <div class="cart-panel__header">
+      <span class="cart-panel__title">🛒 Tu Carrito</span>
+      <button class="cart-close" aria-label="Cerrar carrito">✕</button>
+    </div>
+    <div class="cart-panel__body"></div>
+    <div class="cart-panel__footer">
+      <div class="cart-total">
+        <span class="cart-total__label">Total:</span>
+        <span class="cart-total__val">Q0.00</span>
+      </div>
+      <button class="btn btn--primary btn--full" onclick="generateInvoicePDF()">
+        Proceder al pago
+      </button>
+    </div>
+  </aside>
+
+  <button class="back-top" aria-label="Volver arriba">↑</button>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
 </body>
 </html>
