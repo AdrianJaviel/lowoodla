@@ -434,12 +434,15 @@
     };
 
     /* ══════════════════════════════════════
-       BOTÓN — RECIBIR FACTURA
+       BOTÓN — RECIBIR FACTURA (opcional)
     ══════════════════════════════════════ */
-    document.getElementById('btn-invoice').addEventListener('click', () => {
-      Cart.add({ ...PRODUCT });
-      setTimeout(() => generateInvoicePDF(), 300);
-    });
+    const btnInvoice = document.getElementById('btn-invoice');
+    if (btnInvoice) {
+      btnInvoice.addEventListener('click', () => {
+        Cart.add({ ...PRODUCT });
+        setTimeout(() => generateInvoicePDF(), 300);
+      });
+    }
 
     /* ══════════════════════════════════════
        BOTÓN — CONTACTAR POR WHATSAPP
