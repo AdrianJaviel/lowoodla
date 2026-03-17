@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Botella Térmica Premium — LOWOODLA</title>
+  <meta name="description" content="Botella Térmica Premium 500ml." />
+  <link rel="stylesheet" href="../../styles.css" />
+  <style>
+
+    /* ══════════════════════════════════════
+       LAYOUT DETALLE
+    ══════════════════════════════════════ */
+    .detail-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      align-items: start;
+      padding: 40px 0 80px;
+    }
+
+    /* ══════════════════════════════════════
+       CARRUSEL
+    ══════════════════════════════════════ */
+    .carousel {
+      position: sticky;
+      top: calc(var(--header-h) + 20px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .carousel__track-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      aspect-ratio: 1 / 1;       /* cuadrado — mantiene proporción */
+      width: 100%;
+    }
+
+    /* Pista que se mueve horizontalmente */
+    .carousel__track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    /* Cada slide ocupa exactamente el 100% del contenedor */
+    .carousel__slide {
+      flex: 0 0 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /*
+      ──────────────────────────────────────
+      IMÁGENES REALES
+      Reemplazá src="" con la ruta de tu imagen.
+      Ejemplos:
+        src="imagenes/botella-frente.jpg"
+        src="imagenes/botella-lateral.jpg"
+        src="imagenes/botella-detalle.jpg"
+      ──────────────────────────────────────
+    */
+    .carousel__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;        /* llena el espacio sin deformarse */
+      object-position: center;
+      display: block;
+    }
+
+    /* Flechas de navegación */
+    .carousel__btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(8, 13, 26, 0.72);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background var(--transition), border-color var(--transition);
+      backdrop-filter: blur(6px);
+    }
+    .carousel__btn:hover {
+      background: var(--blue-mid);
+      border-color: var(--blue-light);
+    }
+    .carousel__btn--prev { left: 12px; }
+    .carousel__btn--next { right: 12px; }
+
+    /* Indicadores de punto */
+    .carousel__dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+    .carousel__dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+      padding: 0;
+    }
+    .carousel__dot.active {
+      background: var(--blue-light);
+      transform: scale(1.3);
+    }
+
+    /* ══════════════════════════════════════
+       INFORMACIÓN PRODUCTO
+    ══════════════════════════════════════ */
+    .detail-info {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      position: sticky;
+      top: calc(var(--header-h) + 20px);
+    }
+
+    .detail-category {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+    }
+
+    .detail-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+      color: var(--text-primary);
+    }
+
+    .detail-price {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--blue-light);
+    }
+
+    .detail-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .detail-desc {
+      font-size: 0.97rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* Botones */
+    .detail-actions { display: flex; flex-direction: column; gap: 12px; }
+
+    .btn-invoice {
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 14px; border-radius: var(--radius-md);
+      font-family: var(--font-body); font-size: 0.95rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-deep));
+      color: #fff; border: none; cursor: pointer;
+      box-shadow: var(--shadow-btn); transition: all var(--transition);
+    }
+    .btn-invoice:hover {
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-mid));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(59,130,246,0.5);
+    }
+
+    .btn-whatsapp {
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 14px; border-radius: var(--radius-md);
+      font-family: var(--font-body); font-size: 0.95rem; font-weight: 700;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff; border: none; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.3); transition: all var(--transition);
+    }
+    .btn-whatsapp:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .detail-wrap {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding-bottom: 48px;
+      }
+      .carousel  { position: static; }
+      .detail-info { position: static; }
+    }
+
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- ══════════════ HEADER ══════════════ -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="index.html" class="logo">LOW<span>OOD</span>LA</a>
+      <nav class="nav">
+        <a href="index.html#categorias" class="nav__link">Categorías</a>
+        <a href="uso-cotidiano.html" class="nav__link">Uso Cotidiano</a>
+        <a href="pokemon.html" class="nav__link">Pokémon</a>
+        <a href="ropa.html" class="nav__link">Ropa</a>
+        <a href="legos.html" class="nav__link">Legos</a>
+        <a href="pines.html" class="nav__link">Pines</a>
+        <a href="stickers.html" class="nav__link">Stickers</a>
+        <a href="info.html" class="nav__link">Info</a>
+      </nav>
+      <button class="header__cart" data-open-cart aria-label="Carrito">
+        🛒 Carrito <span class="cart-badge"></span>
+      </button>
+      <button class="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══════════════ MOBILE NAV ══════════════ -->
+  <nav class="mobile-nav">
+    <a href="index.html#categorias" class="nav__link">Categorías</a>
+    <a href="uso-cotidiano.html" class="nav__link">Uso Cotidiano</a>
+    <a href="pokemon.html" class="nav__link">Pokémon</a>
+    <a href="ropa.html" class="nav__link">Ropa</a>
+    <a href="legos.html" class="nav__link">Legos</a>
+    <a href="pines.html" class="nav__link">Pines</a>
+    <a href="stickers.html" class="nav__link">Stickers</a>
+    <a href="info.html" class="nav__link">Info</a>
+    <button class="header__cart btn--ghost" data-open-cart
+      style="margin-top:8px;border-radius:10px;padding:12px 16px;text-align:left;">
+      🛒 Ver carrito <span class="cart-badge"></span>
+    </button>
+  </nav>
+
+  <!-- ══════════════ MAIN ══════════════ -->
+  <main class="page-wrapper">
+    <div class="container">
+      <div class="detail-wrap">
+
+        <!-- ════ CARRUSEL ════ -->
+        <div class="carousel" id="carousel" aria-label="Galería del producto">
+
+          <div class="carousel__track-wrap">
+
+            <div class="carousel__track" id="carousel-track">
+
+              <!-- ─── SLIDE 1 — Poné tu imagen aquí ─── -->
+              <div class="carousel__slide">
+               <img class="carousel__img" src="pro_variados/pachongat1.jpeg" alt="">
+              </div>
+
+              <!-- ─── SLIDE 2 — Poné tu imagen aquí ─── -->
+              <div class="carousel__slide">
+                <img
+                  class="carousel__img"
+                  src=""
+                  alt="Imagen 2 del producto"
+                />
+              </div>
+
+              <!-- ─── SLIDE 3 — Poné tu imagen aquí ─── -->
+              <div class="carousel__slide">
+                <img
+                  class="carousel__img"
+                  src=""
+                  alt="Imagen 3 del producto"
+                />
+              </div>
+
+              <!-- ─── SLIDE 4 — Poné tu imagen aquí ─── -->
+              <div class="carousel__slide">
+                <img
+                  class="carousel__img"
+                  src=""
+                  alt="Imagen 4 del producto"
+                />
+              </div>
+
+              <!-- ─── Agregá más slides copiando el bloque de arriba ─── -->
+
+            </div><!-- /carousel__track -->
+
+            <!-- Flechas -->
+            <button class="carousel__btn carousel__btn--prev" id="carousel-prev" aria-label="Imagen anterior">‹</button>
+            <button class="carousel__btn carousel__btn--next" id="carousel-next" aria-label="Imagen siguiente">›</button>
+
+          </div><!-- /carousel__track-wrap -->
+
+          <!-- Puntos indicadores — se generan automáticamente con JS -->
+          <div class="carousel__dots" id="carousel-dots" aria-label="Indicadores"></div>
+
+        </div><!-- /carousel -->
+
+
+        <!-- ════ INFORMACIÓN ════ -->
+        <div class="detail-info">
+
+          <div class="detail-category">Uso Cotidiano</div>
+
+          <h1 class="detail-name">Gatorade</h1>
+
+          <div class="detail-price">Q110</div>
+
+          <div class="detail-divider"></div>
+
+          <p class="detail-desc">
+           -16 oz (473 ml) de capacidad.<br>
+          </p>
+
+          <div class="detail-divider"></div>
+
+          <div class="detail-actions">
+
+            <button class="btn-invoice" id="btn-invoice">
+              📄 Recibir factura
+            </button>
+
+            <button class="btn-whatsapp" id="btn-whatsapp">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                   viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.522 5.852L.057 23.945a.5.5 0 0 0 .609.61l6.098-1.464A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.23-1.378l-.374-.214-3.87.929.944-3.87-.228-.38A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+              </svg>
+              Contactar
+            </button>
+
+          </div>
+        </div><!-- /detail-info -->
+
+      </div><!-- /detail-wrap -->
+    </div><!-- /container -->
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <div class="logo" style="font-size:1.1rem;">LOW<span>OOD</span>LA</div>
+            <p class="footer__tagline">Tu tienda de artículos cotidianos y coleccionables en Guatemala.</p>
+          </div>
+          <nav class="footer__nav">
+            <div class="footer__nav-title">Categorías</div>
+            <a href="uso-cotidiano.html">Uso Cotidiano</a>
+            <a href="pokemon.html">Pokémon</a>
+            <a href="ropa.html">Ropa</a>
+            <a href="legos.html">Legos</a>
+            <a href="pines.html">Pines</a>
+            <a href="stickers.html">Stickers</a>
+          </nav>
+          <nav class="footer__nav">
+            <div class="footer__nav-title">Sitio</div>
+            <a href="index.html">Inicio</a>
+            <a href="info.html">Info</a>
+          </nav>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copy">© 2025 LOWOODLA. Todos los derechos reservados.</p>
+          <p class="footer__copy">Hecho con ❤️ en Guatemala</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-top" aria-label="Volver arriba">↑</button>
+
+  <script src="script.js"></script>
+  <script>
+    /* ══════════════════════════════════════
+       CARRUSEL
+    ══════════════════════════════════════ */
+    const track     = document.getElementById('carousel-track');
+    const slides    = track.querySelectorAll('.carousel__slide');
+    const dotsWrap  = document.getElementById('carousel-dots');
+    const btnPrev   = document.getElementById('carousel-prev');
+    const btnNext   = document.getElementById('carousel-next');
+    const total     = slides.length;
+    let current     = 0;
+
+    // Generar puntos
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel__dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Ir a imagen ' + (i + 1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    function goTo(idx) {
+      current = (idx + total) % total;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dotsWrap.querySelectorAll('.carousel__dot').forEach((d, i) =>
+        d.classList.toggle('active', i === current)
+      );
+    }
+
+    btnPrev.addEventListener('click', () => goTo(current - 1));
+    btnNext.addEventListener('click', () => goTo(current + 1));
+
+    // Swipe táctil
+    let touchStartX = 0;
+    track.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+    });
+
+    /* ══════════════════════════════════════
+       DATOS DEL PRODUCTO
+    ══════════════════════════════════════ */
+    const PRODUCT = {
+      id:    'botella-termica-premium',
+      name:  'Botella Térmica Premium',
+      price: 185,
+      emoji: '🍶'
+    };
+
+    /* ══════════════════════════════════════
+       BOTÓN — RECIBIR FACTURA
+    ══════════════════════════════════════ */
+    document.getElementById('btn-invoice').addEventListener('click', () => {
+      Cart.add({ ...PRODUCT });
+      setTimeout(() => generateInvoicePDF(), 300);
+    });
+
+    /* ══════════════════════════════════════
+       BOTÓN — CONTACTAR POR WHATSAPP
+    ══════════════════════════════════════ */
+    document.getElementById('btn-whatsapp').addEventListener('click', () => {
+      let msg = '🛍️ *Hola LOWOODLA!* Estoy interesado/a en:\n\n';
+      msg    += `${PRODUCT.emoji} *${PRODUCT.name}*\n`;
+      msg    += `💰 Precio: Q${PRODUCT.price.toFixed(2)}\n\n`;
+      msg    += '¿Podés confirmarme disponibilidad y coordinar el envío? 😊';
+      window.open('https://wa.me/50259151412?text=' + encodeURIComponent(msg), '_blank');
+      showToast('Abriendo WhatsApp... 💬', 'success');
+    });
+  </script>
+</body>
+</html>
