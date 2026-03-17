@@ -448,6 +448,7 @@
        BOTÓN — CONTACTAR POR WHATSAPP
     ══════════════════════════════════════ */
     document.getElementById('btn-whatsapp').addEventListener('click', () => {
+      let msg = '🛍️ *Hola LOWOODLA!* Estoy interesado/a en:\n\n';
       msg    += '¿Podés confirmarme disponibilidad y coordinar el envío? 😊';
       window.open('https://wa.me/50259151412?text=' + encodeURIComponent(msg), '_blank');
       showToast('Abriendo WhatsApp... 💬', 'success');
