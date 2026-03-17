@@ -427,8 +427,8 @@
        DATOS DEL PRODUCTO
     ══════════════════════════════════════ */
     const PRODUCT = {
-      id:    'botella-termica-premium',
-      name:  'Botella Térmica Premium',
+      id:    'Pachon Gatorade',
+      name:  'Pachon Gatorade',
       price: 185,
       emoji: '🍶'
     };
@@ -449,6 +449,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('btn-whatsapp').addEventListener('click', () => {
     let msg = '🛍️ *Hola LOWOODLA!* Estoy interesado/a en:\n\n';
     msg += `${PRODUCT.emoji} *${PRODUCT.name}*\n`;
+
     msg += '¿Podés confirmarme disponibilidad y coordinar el envío? 😊';
 
     window.open('https://wa.me/50259151412?text=' + encodeURIComponent(msg), '_blank');
