@@ -444,17 +444,15 @@
     /* ══════════════════════════════════════
        BOTÓN — CONTACTAR POR WHATSAPP
     ══════════════════════════════════════ */
-document.addEventListener("DOMContentLoaded", () => {
+document.getElementById('btn-whatsapp').addEventListener('click', () => {
 
-  document.getElementById('btn-whatsapp').addEventListener('click', () => {
-    let msg = '🛍️ *Hola LOWOODLA!* Estoy interesado/a en:\n\n';
-    msg += `${PRODUCT.emoji} *${PRODUCT.name}*\n`;
+  const msg = `🛍️ Hola LOWOODLA!
+Estoy interesado en:
+${PRODUCT.emoji} ${PRODUCT.name}
 
-    msg += '¿Podés confirmarme disponibilidad y coordinar el envío? 😊';
+¿Está disponible?`;
 
-    window.open('https://wa.me/50259151412?text=' + encodeURIComponent(msg), '_blank');
-    showToast('Abriendo WhatsApp... 💬', 'success');
-  });
+  window.open(`https://wa.me/50259151412?text=${encodeURIComponent(msg)}`, '_blank');
 
 });
   </script>
