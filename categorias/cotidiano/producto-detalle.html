@@ -375,8 +375,7 @@
           </nav>
         </div>
         <div class="footer__bottom">
-          <p class="footer__copy">© 2025 LOWOODLA. Todos los derechos reservados.</p>
-          <p class="footer__copy">Hecho con ❤️ en Guatemala</p>
+          <p class="footer__copy">© 2026 LOWOODLA. Todos los derechos reservados.</p>
         </div>
       </div>
     </div>
@@ -449,9 +448,6 @@
        BOTÓN — CONTACTAR POR WHATSAPP
     ══════════════════════════════════════ */
     document.getElementById('btn-whatsapp').addEventListener('click', () => {
-      let msg = '🛍️ *Hola LOWOODLA!* Estoy interesado/a en:\n\n';
-      msg    += `${PRODUCT.emoji} *${PRODUCT.name}*\n`;
-      msg    += `💰 Precio: Q${PRODUCT.price.toFixed(2)}\n\n`;
       msg    += '¿Podés confirmarme disponibilidad y coordinar el envío? 😊';
       window.open('https://wa.me/50259151412?text=' + encodeURIComponent(msg), '_blank');
       showToast('Abriendo WhatsApp... 💬', 'success');
