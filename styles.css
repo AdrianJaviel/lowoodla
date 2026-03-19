@@ -1185,3 +1185,46 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   from { background-position: 200% center; }
   to   { background-position: -200% center; }
 }
+
+/* ── Variables de color WS (faltaban en styles.css) ── */
+
+
+/* ── Grid responsive mobile-first ── */
+.products-grid {
+  display: grid;
+  gap: 16px;
+
+  /* móvil: 1 columna, cards anchas y legibles */
+  grid-template-columns: 1fr;
+}
+
+/* 2 columnas desde 420px */
+@media (min-width: 420px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 3 columnas desde 640px (tablet) */
+@media (min-width: 640px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+/* 4 columnas desde 1024px (desktop) */
+@media (min-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
+
+/* ── Cards con altura uniforme ── */
+.product-card {
+  display: flex;
+  flex-direction: column;
+}
+.product-card__body  { flex: 1; }   /* empuja el footer hacia abajo */
+.product-card__footer { margin-top: auto; }
