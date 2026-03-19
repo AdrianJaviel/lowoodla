@@ -461,5 +461,33 @@
   </aside>
   <button class="back-top" aria-label="Volver arriba">↑</button>
   <script src="script.js"></script>
+  <script>
+
+
+    /* ══════════════════════════════════════
+       DATOS DEL PRODUCTO
+    ══════════════════════════════════════ */
+    const PRODUCT = {
+      id:    'Pachon Gatorade',
+      name:  'Pachon Gatorade',
+      price: 185,
+      emoji: '🍶'
+    };
+
+    /* ══════════════════════════════════════
+       DATOS DEL PRODUCTO
+    ══════════════════════════════════════ */
+    document.getElementById('btn-whatsapp').addEventListener('click', () => {
+
+  const msg = `🛍️ Hola LOWOODLA!
+    Estoy interesado en:
+      ${PRODUCT.emoji} ${PRODUCT.name}
+
+    ¿Está disponible?`;
+
+  window.open(`https://wa.me/50259151412?text=${encodeURIComponent(msg)}`, '_blank');
+
+});
+  </script>
 </body>
 </html>
