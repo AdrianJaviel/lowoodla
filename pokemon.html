@@ -6,6 +6,30 @@
   <title>Pokémon — LOWOODLA</title>
   <meta name="description" content="Cartas Pokémon, boosters, colecciones y accesorios. Encontrá todo en LOWOODLA." />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Grid responsive mobile-first ── */
+    .products-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 420px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    }
+    @media (min-width: 640px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    }
+    @media (min-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    }
+    /* ── Cards altura uniforme ── */
+    .product-card { display: flex; flex-direction: column; }
+    .product-card__body   { flex: 1; }
+    .product-card__footer { margin-top: auto; }
+    /* ── Ocultar botones +/- del carrito ── */
+    .cart-item__qty, .qty-btn, .qty-val { display: none !important; }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
   <header class="header">
@@ -47,7 +71,7 @@
         <p class="page-hero__desc fade-up">Boosters, colecciones, cartas individuales y accesorios para tu colección.</p>
       </div>
     </section>
-<!-- ── CATEGORÍAS 
+
     <div class="container">
       <div class="filters-bar">
         <button class="filter-chip active">Todos</button>
@@ -57,7 +81,7 @@
         <button class="filter-chip">Accesorios</button>
       </div>
     </div>
-── -->
+
     <section class="section" style="padding-top:0;">
       <div class="container">
         <div class="products-grid">
@@ -184,7 +208,7 @@
             <h3 style="font-family:var(--font-display);font-size:1rem;font-weight:700;letter-spacing:0.04em;margin-bottom:6px;">¿Buscás una carta específica?</h3>
             <p style="color:var(--text-secondary);font-size:0.88rem;">Escribinos y la conseguimos por vos.</p>
           </div>
-          <a href="info.html" class="btn btn--primary">Contactanos 💬</a>
+          <a href="https://wa.me/50259151412?text=Hola%20LOWOODLA%2C%20quiero%20hacer%20una%20consulta%20%F0%9F%91%8B" target="_blank" class="btn btn--primary">Contactanos 💬</a>
         </div>
       </div>
     </section>
@@ -215,7 +239,8 @@
           </nav>
         </div>
         <div class="footer__bottom">
-          <p class="footer__copy">© 2026 LOWOODLA. Todos los derechos reservados.</p>
+          <p class="footer__copy">© 2025 LOWOODLA. Todos los derechos reservados.</p>
+          <p class="footer__copy">Hecho con ❤️ en Guatemala</p>
         </div>
       </div>
     </div>
@@ -230,7 +255,7 @@
     <div class="cart-panel__body"></div>
     <div class="cart-panel__footer">
       <div class="cart-total"><span class="cart-total__label">Total:</span><span class="cart-total__val">Q0.00</span></div>
-      <button class="btn btn--primary btn--full" onclick="showToast('Función de pago próximamente 🚀','info')">Proceder al pago</button>
+      <button class="btn btn--primary btn--full" onclick="generateInvoicePDF()">Proceder al pago</button>
     </div>
   </aside>
   <button class="back-top" aria-label="Volver arriba">↑</button>

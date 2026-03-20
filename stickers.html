@@ -7,8 +7,13 @@
   <meta name="description" content="Stickers holográficos, vinilo, packs y diseños exclusivos. Agregá al carrito directo desde LOWOODLA." />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    
-    /* Botón agregar al carrito en tarjeta */
+    /* ── Variables de color WS (no definidas en styles.css) ── */
+    :root {
+      --green-mid:  #25d366;
+      --green-deep: #128c7e;
+    }
+
+    /* ── Botón agregar al carrito en tarjeta ── */
     .product-card .btn--add {
       background: linear-gradient(135deg, var(--blue-mid), var(--blue-deep));
       color: #fff;
@@ -24,50 +29,58 @@
       font-size: 0.82rem;
       font-weight: 600;
       transition: all var(--transition);
+      cursor: pointer;
+      font-family: var(--font-body);
     }
     .product-card .btn--add:hover {
       background: linear-gradient(135deg, var(--blue-light), var(--blue-mid));
       transform: translateY(-1px);
     }
-    /* Cart highlight banner */
-    .cart-banner {
-      background: linear-gradient(135deg, rgba(37,99,235,0.18), rgba(29,78,216,0.08));
-      border: 1px solid var(--border-hover);
-      border-radius: var(--radius-lg);
-      padding: 18px 24px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-    }
-    .cart-banner__icon { font-size: 1.6rem; }
-    .cart-banner__text { flex: 1; }
-    .cart-banner__title {
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--text-primary);
-      margin-bottom: 2px;
-    }
-    .cart-banner__sub { font-size: 0.8rem; color: var(--text-secondary); }
 
+    /* ── Ocultar botones +/- de cantidad en el carrito ── */
+    .cart-item__qty,
+    .qty-btn,
+    .qty-val { display: none !important; }
+
+    /* ── Grid responsive mobile-first ── */
+    .products-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 420px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    }
+    @media (min-width: 640px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    }
+    @media (min-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    }
+
+    /* ── Cards altura uniforme ── */
+    .product-card { display: flex; flex-direction: column; }
+    .product-card__body   { flex: 1; }
+    .product-card__footer { margin-top: auto; }
+
+    /* ── Botón WhatsApp ── */
     .btn-whatsapp {
       margin-top: 10px;
       background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
       color: #ffffff;
-      box-shadow: var(--shadow-btn);
-      border: 1px solid transparent;
+      box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+      border: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border-radius: var(--radius-md);
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 0.88rem;
+      font-weight: 700;
+      font-family: var(--font-body);
+      cursor: pointer;
       transition: all var(--transition);
     }
     .btn-whatsapp:hover { opacity: 0.9; transform: translateY(-2px); }
@@ -111,21 +124,14 @@
       <div class="container">
         <p class="page-hero__eyebrow fade-up">LOWOODLA / Categorías</p>
         <h1 class="page-hero__title fade-up">🎨 Stickers</h1>
-        <p class="page-hero__desc fade-up">Holográficos, de vinilo, packs temáticos y diseños exclusivos para decorar lo que quieras.</p>
+        <p class="page-hero__desc fade-up">Uso: 1. Agregar carrito, 2.Boleta, 3. Contactar para finalizar pedido</p>
       </div>
     </section>
 
     <div class="container">
 
       <!-- Banner carrito -->
-      <div class="cart-banner fade-up">
-        <div class="cart-banner__icon">🛒</div>
-        <div class="cart-banner__text">
-          <div class="cart-banner__title">¡Agregá varios stickers al carrito!</div>
-          <div class="cart-banner__sub">Podés combinar productos y hacer un solo pedido. Tu carrito se guarda automáticamente.</div>
-        </div>
-        <button class="btn btn--ghost btn--sm" data-open-cart>Ver carrito</button>
-      </div>
+
  <!--
       <div class="filters-bar">
         <button class="filter-chip active">Todos</button>
@@ -156,20 +162,13 @@
             <div class="product-card__footer">
               <button class="btn--add"
                 data-add-cart
+                data-price="2"
                 data-id="sticker-holo-x10"
                 data-name="Pack Stickers Holográficos x10"
-                data-price="2"
                 data-emoji="📄">
                 🛒 Agregar al carrito
               </button>
-            <button class="btn-whatsapp" id="btn-whatsapp">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                   viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.522 5.852L.057 23.945a.5.5 0 0 0 .609.61l6.098-1.464A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.23-1.378l-.374-.214-3.87.929.944-3.87-.228-.38A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-              </svg>
-              Contactar
-            </button>
+
             </div>
           </div>
 
@@ -457,38 +456,55 @@
     <div class="cart-panel__body"></div>
     <div class="cart-panel__footer">
       <div class="cart-total"><span class="cart-total__label">Total:</span><span class="cart-total__val">Q0.00</span></div>
-      <button class="btn btn--primary btn--full" onclick="generateInvoicePDF()">Proceder al pago</button>
+      <button class="btn btn--primary btn--full" onclick="generateInvoicePDF()">Boleta</button>
+                <button class="btn-whatsapp" id="btn-whatsapp">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                   viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.522 5.852L.057 23.945a.5.5 0 0 0 .609.61l6.098-1.464A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.23-1.378l-.374-.214-3.87.929.944-3.87-.228-.38A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+              </svg>
+              Contactar para finalizar pedido
+            </button>
     </div>
   </aside>
   <button class="back-top" aria-label="Volver arriba">↑</button>
   <script src="script.js"></script>
   <script>
-
-
-    /* ══════════════════════════════════════
-       DATOS DEL PRODUCTO
-    ══════════════════════════════════════ */
-    const PRODUCT = {
-      id:    'Pachon Gatorade',
-      name:  'Pachon Gatorade',
-      price: 185,
-      emoji: '🍶'
-    };
-
-    /* ══════════════════════════════════════
-       DATOS DEL PRODUCTO
-    ══════════════════════════════════════ */
     document.getElementById('btn-whatsapp').addEventListener('click', () => {
+      const items = Cart.getItems();
 
-  const msg = `🛍️ Hola LOWOODLA!
-    Estoy interesado en:
-      ${PRODUCT.emoji} ${PRODUCT.name}
+      if (items.length === 0) {
+        showToast('El carrito está vacío 🛒', 'info');
+        return;
+      }
 
-    ¿Está disponible?`;
+      const orderNum = 'LW-' + Date.now().toString().slice(-6);
+      const fecha    = new Date().toLocaleDateString('es-GT', { day:'2-digit', month:'long', year:'numeric' });
 
-  window.open(`https://wa.me/50259151412?text=${encodeURIComponent(msg)}`, '_blank');
+      let msg = '🛍️ *Hola LOWOODLA!*\n';
+      msg    += 'Quiero realizar el siguiente pedido:\n\n';
+      msg    += '━━━━━━━━━━━━━━━━━━━━\n';
+      msg    += `📋 *Orden N°:* ${orderNum}\n`;
+      msg    += `📅 *Fecha:* ${fecha}\n`;
+      msg    += '━━━━━━━━━━━━━━━━━━━━\n\n';
+      msg    += '*🎨 STICKERS:*\n';
 
-});
+      let total = 0;
+      items.forEach(item => {
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+        const qty = item.qty > 1 ? ` ×${item.qty}` : '';
+        msg += `${item.emoji || '•'} ${item.name}${qty} — *Q${subtotal.toFixed(2)}*\n`;
+      });
+
+      msg += '\n━━━━━━━━━━━━━━━━━━━━\n';
+      msg += `💰 *TOTAL: Q${total.toFixed(2)}*\n`;
+      msg += '━━━━━━━━━━━━━━━━━━━━\n\n';
+      msg += '¿Podés confirmarme disponibilidad y coordinar el envío? 😊';
+
+      window.open('https://wa.me/50259151412?text=' + encodeURIComponent(msg), '_blank');
+      showToast('Abriendo WhatsApp... 💬', 'success');
+    });
   </script>
 </body>
 </html>

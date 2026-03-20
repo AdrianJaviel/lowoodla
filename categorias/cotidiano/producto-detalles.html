@@ -13,21 +13,21 @@
     ══════════════════════════════════════ */
     .detail-wrap {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 52px;
+      grid-template-columns: 1.1fr 0.9fr;  /* carrusel un poco más ancho */
+      gap: 48px;
       align-items: start;
-      padding: 40px 0 80px;
+      padding: 36px 0 80px;
     }
 
     /* ══════════════════════════════════════
-       CARRUSEL
+       CARRUSEL — ratio vertical 3:4
     ══════════════════════════════════════ */
     .carousel {
       position: sticky;
       top: calc(var(--header-h) + 20px);
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .carousel__track-wrap {
@@ -36,19 +36,20 @@
       overflow: hidden;
       border: 1px solid var(--border);
       background: var(--bg-card);
-      aspect-ratio: 1 / 1;       /* cuadrado — mantiene proporción */
+      aspect-ratio: 3 / 4;   /* ← VERTICAL: perfecto para fotos de producto */
       width: 100%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
     }
 
-    /* Pista que se mueve horizontalmente */
+    /* Pista horizontal */
     .carousel__track {
       display: flex;
       height: 100%;
-      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
       will-change: transform;
     }
 
-    /* Cada slide ocupa exactamente el 100% del contenedor */
+    /* Cada slide = 100% del contenedor */
     .carousel__slide {
       flex: 0 0 100%;
       height: 100%;
@@ -57,20 +58,20 @@
 
     /*
       ──────────────────────────────────────
-      IMÁGENES REALES
-      Reemplazá src="" con la ruta de tu imagen.
-      Ejemplos:
-        src="imagenes/botella-frente.jpg"
-        src="imagenes/botella-lateral.jpg"
-        src="imagenes/botella-detalle.jpg"
+      IMÁGENES — colocá la ruta en src=""
+      Ejemplo: src="pro_variados/foto2.jpg"
       ──────────────────────────────────────
     */
     .carousel__img {
       width: 100%;
       height: 100%;
-      object-fit: cover;        /* llena el espacio sin deformarse */
-      object-position: center;
+      object-fit: cover;
+      object-position: center top;  /* prioriza la parte superior */
       display: block;
+      transition: transform 0.4s ease;
+    }
+    .carousel__slide:hover .carousel__img {
+      transform: scale(1.02);
     }
 
     /* Flechas de navegación */
@@ -79,46 +80,68 @@
       top: 50%;
       transform: translateY(-50%);
       z-index: 10;
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      background: rgba(8, 13, 26, 0.72);
-      border: 1px solid var(--border);
+      background: rgba(8, 13, 26, 0.78);
+      border: 1px solid rgba(59,130,246,0.25);
       color: var(--text-primary);
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: background var(--transition), border-color var(--transition);
-      backdrop-filter: blur(6px);
+      transition: all var(--transition);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     .carousel__btn:hover {
       background: var(--blue-mid);
       border-color: var(--blue-light);
+      transform: translateY(-50%) scale(1.08);
     }
     .carousel__btn--prev { left: 12px; }
     .carousel__btn--next { right: 12px; }
 
-    /* Indicadores de punto */
+    /* Contador de slide (ej: 1 / 4) */
+    .carousel__counter {
+      position: absolute;
+      bottom: 12px;
+      right: 14px;
+      background: rgba(8,13,26,0.7);
+      border: 1px solid rgba(59,130,246,0.2);
+      backdrop-filter: blur(6px);
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
+      z-index: 5;
+    }
+
+    /* Puntos indicadores */
     .carousel__dots {
       display: flex;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
+      padding: 2px 0;
     }
     .carousel__dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--text-muted);
       border: none;
       cursor: pointer;
-      transition: background var(--transition), transform var(--transition);
+      transition: background var(--transition), transform var(--transition), width var(--transition);
       padding: 0;
     }
     .carousel__dot.active {
       background: var(--blue-light);
-      transform: scale(1.3);
+      transform: scale(1.25);
+      width: 18px;           /* punto activo se alarga como píldora */
+      border-radius: 999px;
     }
 
     /* ══════════════════════════════════════
@@ -127,56 +150,126 @@
     .detail-info {
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 0;
       position: sticky;
       top: calc(var(--header-h) + 20px);
     }
 
+    /* Badge de categoría */
     .detail-category {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--blue-light);
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 999px;
+      padding: 4px 12px;
+      width: fit-content;
+      margin-bottom: 18px;
     }
 
     .detail-name {
       font-family: var(--font-display);
-      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
       font-weight: 700;
-      letter-spacing: 0.02em;
-      line-height: 1.2;
+      letter-spacing: 0.01em;
+      line-height: 1.15;
       color: var(--text-primary);
+      margin-bottom: 20px;
     }
 
+    /* Precio con etiqueta */
+    .detail-price-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .detail-price-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
     .detail-price {
       font-family: var(--font-display);
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 900;
       color: var(--blue-light);
+      line-height: 1;
     }
 
     .detail-divider {
       height: 1px;
       background: var(--border);
+      margin: 20px 0;
     }
 
+    /* Descripción con viñetas mejoradas */
     .detail-desc {
-      font-size: 0.97rem;
+      font-size: 0.95rem;
       color: var(--text-secondary);
-      line-height: 1.75;
+      line-height: 1.8;
+    }
+    .detail-desc li {
+      list-style: none;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+    .detail-desc li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--blue-light);
+      font-weight: 700;
+    }
+
+    /* Disponibilidad */
+    .detail-stock {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #4ade80;
+      background: rgba(74,222,128,0.08);
+      border: 1px solid rgba(74,222,128,0.2);
+      border-radius: 999px;
+      padding: 5px 14px;
+      width: fit-content;
+      margin-bottom: 24px;
+    }
+    .detail-stock__dot {
+      width: 7px; height: 7px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse-g 2s infinite;
+    }
+    @keyframes pulse-g {
+      0%,100% { opacity:1; }
+      50%      { opacity:0.4; }
     }
 
     /* Botones */
-    .detail-actions { display: flex; flex-direction: column; gap: 12px; }
+    .detail-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
     .btn-invoice {
       display: flex; align-items: center; justify-content: center; gap: 9px;
-      padding: 14px; border-radius: var(--radius-md);
+      padding: 15px; border-radius: var(--radius-md);
       font-family: var(--font-body); font-size: 0.95rem; font-weight: 700;
       background: linear-gradient(135deg, var(--blue-mid), var(--blue-deep));
       color: #fff; border: none; cursor: pointer;
       box-shadow: var(--shadow-btn); transition: all var(--transition);
+      letter-spacing: 0.02em;
     }
     .btn-invoice:hover {
       background: linear-gradient(135deg, var(--blue-light), var(--blue-mid));
@@ -186,13 +279,35 @@
 
     .btn-whatsapp {
       display: flex; align-items: center; justify-content: center; gap: 9px;
-      padding: 14px; border-radius: var(--radius-md);
+      padding: 15px; border-radius: var(--radius-md);
       font-family: var(--font-body); font-size: 0.95rem; font-weight: 700;
       background: linear-gradient(135deg, #25d366, #128c7e);
       color: #fff; border: none; cursor: pointer;
-      box-shadow: 0 4px 16px rgba(37,211,102,0.3); transition: all var(--transition);
+      box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+      transition: all var(--transition);
+      letter-spacing: 0.02em;
     }
-    .btn-whatsapp:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-whatsapp:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+    }
+
+    /* Trust badges */
+    .trust-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-top: 6px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .trust-item span:first-child { font-size: 0.9rem; }
 
     /* ══════════════════════════════════════
        RESPONSIVE
@@ -200,11 +315,13 @@
     @media (max-width: 768px) {
       .detail-wrap {
         grid-template-columns: 1fr;
-        gap: 28px;
-        padding-bottom: 48px;
+        gap: 24px;
+        padding: 24px 0 48px;
       }
-      .carousel  { position: static; }
+      .carousel { position: static; }
       .detail-info { position: static; }
+      /* En móvil el carrusel queda un poco menos alto */
+      .carousel__track-wrap { aspect-ratio: 3 / 4; }
     }
 
   </style>
@@ -303,9 +420,12 @@
             <button class="carousel__btn carousel__btn--prev" id="carousel-prev" aria-label="Imagen anterior">‹</button>
             <button class="carousel__btn carousel__btn--next" id="carousel-next" aria-label="Imagen siguiente">›</button>
 
+            <!-- Contador 1 / 4 -->
+            <div class="carousel__counter" id="carousel-counter">1 / 4</div>
+
           </div><!-- /carousel__track-wrap -->
 
-          <!-- Puntos indicadores — se generan automáticamente con JS -->
+          <!-- Puntos indicadores -->
           <div class="carousel__dots" id="carousel-dots" aria-label="Indicadores"></div>
 
         </div><!-- /carousel -->
@@ -314,33 +434,45 @@
         <!-- ════ INFORMACIÓN ════ -->
         <div class="detail-info">
 
-          <div class="detail-category">Productos variados</div>
+          <div class="detail-category">📦 Productos variados</div>
 
-          <h1 class="detail-name"> Pachon Gatorade</h1>
+          <h1 class="detail-name">Pachon Gatorade</h1>
 
-          <div class="detail-price">Q110</div>
+          <div class="detail-price-wrap">
+            <span class="detail-price-label">Precio</span>
+            <div class="detail-price">Q110</div>
+          </div>
+
+          <div class="detail-stock">
+            <span class="detail-stock__dot"></span>
+            Disponible en stock
+          </div>
 
           <div class="detail-divider"></div>
 
           <p class="detail-desc">
-           -16 oz (473 ml) de capacidad.<br>
+            -16 oz (473 ml) de capacidad.<br>
           </p>
 
           <div class="detail-divider"></div>
 
           <div class="detail-actions">
-
-
             <button class="btn-whatsapp" id="btn-whatsapp">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                    viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
                 <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.522 5.852L.057 23.945a.5.5 0 0 0 .609.61l6.098-1.464A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.23-1.378l-.374-.214-3.87.929.944-3.87-.228-.38A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
               </svg>
-              Contactar
+              Contactar por WhatsApp
             </button>
-
           </div>
+
+          <div class="trust-row">
+            <div class="trust-item"><span>🛡️</span><span>Compra segura</span></div>
+            <div class="trust-item"><span>🔄</span><span>Cambios en 7 días</span></div>
+            <div class="trust-item"><span>📦</span><span>Envío a todo GT</span></div>
+          </div>
+
         </div><!-- /detail-info -->
 
       </div><!-- /detail-wrap -->
@@ -390,6 +522,7 @@
     const dotsWrap  = document.getElementById('carousel-dots');
     const btnPrev   = document.getElementById('carousel-prev');
     const btnNext   = document.getElementById('carousel-next');
+    const counter   = document.getElementById('carousel-counter');
     const total     = slides.length;
     let current     = 0;
 
@@ -408,7 +541,12 @@
       dotsWrap.querySelectorAll('.carousel__dot').forEach((d, i) =>
         d.classList.toggle('active', i === current)
       );
+      // Actualizar contador
+      if (counter) counter.textContent = `${current + 1} / ${total}`;
     }
+
+    // Inicializar contador
+    if (counter) counter.textContent = `1 / ${total}`;
 
     btnPrev.addEventListener('click', () => goTo(current - 1));
     btnNext.addEventListener('click', () => goTo(current + 1));
