@@ -3,9 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ropa — LOWOODLA</title>
-  <meta name="description" content="Ropa con estilo: remeras, hoodies, gorras y más en LOWOODLA Guatemala." />
+  <title>Variado — LOWOODLA</title>
+  <meta name="description" content="Cartas Pokémon, boosters, colecciones y accesorios. Encontrá todo en LOWOODLA." />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Grid responsive mobile-first ── */
+    .products-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 420px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    }
+    @media (min-width: 640px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    }
+    @media (min-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    }
+    /* ── Cards altura uniforme ── */
+    .product-card { display: flex; flex-direction: column; }
+    .product-card__body   { flex: 1; }
+    .product-card__footer { margin-top: auto; }
+    /* ── Ocultar botones +/- del carrito ── */
+    .cart-item__qty, .qty-btn, .qty-val { display: none !important; }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
   <header class="header">
@@ -14,8 +38,8 @@
       <nav class="nav">
         <a href="index.html#categorias" class="nav__link">Categorías</a>
         <a href="uso-cotidiano.html" class="nav__link">Uso Cotidiano</a>
-        <a href="pokemon.html" class="nav__link">Pokémon</a>
-        <a href="ropa.html" class="nav__link active">Ropa</a>
+        <a href="pokemon.html" class="nav__link active">Pokémon</a>
+        <a href="ropa.html" class="nav__link">Ropa</a>
         <a href="legos.html" class="nav__link">Legos</a>
         <a href="pines.html" class="nav__link">Pines</a>
         <a href="stickers.html" class="nav__link">Stickers</a>
@@ -29,8 +53,8 @@
   <nav class="mobile-nav">
     <a href="index.html#categorias" class="nav__link">Categorías</a>
     <a href="uso-cotidiano.html" class="nav__link">Uso Cotidiano</a>
-    <a href="pokemon.html" class="nav__link">Pokémon</a>
-    <a href="ropa.html" class="nav__link active">Ropa</a>
+    <a href="pokemon.html" class="nav__link active">Pokémon</a>
+    <a href="ropa.html" class="nav__link">Ropa</a>
     <a href="legos.html" class="nav__link">Legos</a>
     <a href="pines.html" class="nav__link">Pines</a>
     <a href="stickers.html" class="nav__link">Stickers</a>
@@ -43,152 +67,110 @@
     <section class="page-hero">
       <div class="container">
         <p class="page-hero__eyebrow fade-up">LOWOODLA / Categorías</p>
-        <h1 class="page-hero__title fade-up">Variedad de productos</h1>
-        <p class="page-hero__desc fade-up">Remeras, hoodies, gorras y más — prendas con estilo para el día a día.</p>
+        <h1 class="page-hero__title fade-up">Productos variados</h1>
+        <p class="page-hero__desc fade-up">Escoje entre una amplia selección de productos variados.</p>
       </div>
     </section>
-   <!-- ── CATEGORÍAS 
+
     <div class="container">
       <div class="filters-bar">
-        <button class="filter-chip active">Todos</button>
-        <button class="filter-chip">Remeras</button>
-        <button class="filter-chip">Hoodies</button>
-        <button class="filter-chip">Gorras</button>
-        <button class="filter-chip">Accesorios</button>
+
       </div>
     </div>
-── -->
+
     <section class="section" style="padding-top:0;">
       <div class="container">
         <div class="products-grid">
 
+          <!-- Producto 1 -->
           <div class="product-card fade-up">
             <div class="product-card__img-wrap">
-              <div class="product-placeholder">📱</div>
-              <span class="product-card__badge">Popular</span>
+              <div class="product-placeholder"><img src="categorias/cotidiano/pro_variados/pachongat1.jpeg" alt=""></div>
+              <span class="product-card__badge">Normal</span>
             </div>
             <div class="product-card__body">
-              <div class="product-card__name">Remera Oversize LOWOODLA</div>
-              <div class="product-card__price">Q185</div>
+              <div class="product-card__name">Pachon Gatorade</div>
+              <div class="product-card__price">Q110</div>
             </div>
             <div class="product-card__footer">
-              <a href="categorias/cotidiano/producto-detalles.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
+              <a href="categorias/cotidiano/pachongatorade.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
             </div>
           </div>
-
+          <!-- Producto 2 -->
           <div class="product-card fade-up">
             <div class="product-card__img-wrap">
-              <div class="product-placeholder">🧥</div>
-              <span class="product-card__badge">Nuevo</span>
+              <div class="product-placeholder"><img src="categorias/cotidiano/pro_variados/airpods1.jpeg" alt=""></div>
+              <span class="product-card__badge">Normal</span>
             </div>
             <div class="product-card__body">
-              <div class="product-card__name">Hoodie Pullover Premium</div>
-              <div class="product-card__price">Q420</div>
+              <div class="product-card__name">Replica Airpods 2da generación</div>
+              <div class="product-card__price">Q450</div>
             </div>
             <div class="product-card__footer">
-              <a href="producto-detalle.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
+              <a href="categorias/cotidiano/airpods.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
             </div>
           </div>
-
+          <!-- Producto 3 -->
           <div class="product-card fade-up">
             <div class="product-card__img-wrap">
-              <div class="product-placeholder">🧢</div>
+              <div class="product-placeholder"><img src="categorias/cotidiano/pro_variados/lampstar1.jpeg" alt=""></div>
+              <span class="product-card__badge">Normal</span>
             </div>
             <div class="product-card__body">
-              <div class="product-card__name">Gorra Snapback Bordada</div>
-              <div class="product-card__price">Q145</div>
-            </div>
-            <div class="product-card__footer">
-              <a href="producto-detalle.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
-            </div>
-          </div>
-
-          <div class="product-card fade-up">
-            <div class="product-card__img-wrap">
-              <div class="product-placeholder">🩱</div>
-              <span class="product-card__badge">Oferta</span>
-            </div>
-            <div class="product-card__body">
-              <div class="product-card__name">Remera Gráfica Anime</div>
-              <div class="product-card__price">Q160</div>
+              <div class="product-card__name">Lampara de Star Wars</div>
+              <div class="product-card__price">Q350</div>
             </div>
             <div class="product-card__footer">
               <a href="producto-detalle.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
             </div>
           </div>
-
+          <!-- Producto 4 -->
           <div class="product-card fade-up">
             <div class="product-card__img-wrap">
-              <div class="product-placeholder">🧣</div>
+              <div class="product-placeholder"><img src="categorias/cotidiano/pro_variados/aud_hy1.jpeg" alt=""></div>
+              <span class="product-card__badge">Normal</span>
             </div>
             <div class="product-card__body">
-              <div class="product-card__name">Buzo Zip-Up con capucha</div>
-              <div class="product-card__price">Q390</div>
+              <div class="product-card__name">Audífonos Hyundai</div>
+              <div class="product-card__price">Q400</div>
             </div>
             <div class="product-card__footer">
               <a href="producto-detalle.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
             </div>
           </div>
-
+          <!-- Producto 5 -->
           <div class="product-card fade-up">
             <div class="product-card__img-wrap">
-              <div class="product-placeholder">🩳</div>
+              <div class="product-placeholder"><img src="categorias/cotidiano/pro_variados/hand1.jpeg" alt=""></div>
+              <span class="product-card__badge">Normal</span>
             </div>
             <div class="product-card__body">
-              <div class="product-card__name">Short Deportivo con bolsillos</div>
-              <div class="product-card__price">Q175</div>
+              <div class="product-card__name">Hand Crip</div>
+              <div class="product-card__price">Q110</div>
             </div>
             <div class="product-card__footer">
               <a href="producto-detalle.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
             </div>
           </div>
-
+          <!-- Producto 5 -->
           <div class="product-card fade-up">
             <div class="product-card__img-wrap">
-              <div class="product-placeholder">👟</div>
-              <span class="product-card__badge">Limitado</span>
+              <div class="product-placeholder"><img src="categorias/cotidiano/pro_variados/audifonopr1.jpeg" alt=""></div>
+              <span class="product-card__badge">Normal</span>
             </div>
             <div class="product-card__body">
-              <div class="product-card__name">Bolsa Tote Canvas Estampada</div>
-              <div class="product-card__price">Q95</div>
+              <div class="product-card__name">Audifono Prime Audio</div>
+              <div class="product-card__price">Q200</div>
             </div>
             <div class="product-card__footer">
               <a href="producto-detalle.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
             </div>
           </div>
+          
 
-          <div class="product-card fade-up">
-            <div class="product-card__img-wrap">
-              <div class="product-placeholder">🧤</div>
-            </div>
-            <div class="product-card__body">
-              <div class="product-card__name">Calcetas Diseño Minimalista x3 pares</div>
-              <div class="product-card__price">Q75</div>
-            </div>
-            <div class="product-card__footer">
-              <a href="producto-detalle.html" class="btn btn--primary btn--sm btn--full">Ver detalle</a>
-            </div>
-          </div>
-
-        </div>
-        <div style="text-align:center;margin-top:40px;" class="fade-up">
-          <button class="btn btn--outline" onclick="showToast('Cargando más productos...','info')">Cargar más productos</button>
         </div>
       </div>
     </section>
-
-    <section class="section--sm" style="background:var(--bg-secondary);border-top:1px solid var(--border);">
-      <div class="container">
-        <div class="fade-up" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
-          <div>
-            <h3 style="font-family:var(--font-display);font-size:1rem;font-weight:700;letter-spacing:0.04em;margin-bottom:6px;">¿Querés una talla o diseño específico?</h3>
-            <p style="color:var(--text-secondary);font-size:0.88rem;">Escribinos y lo gestionamos por vos.</p>
-          </div>
-          <a href="info.html" class="btn btn--primary">Contactanos 💬</a>
-        </div>
-      </div>
-    </section>
-
   </main>
 
   <footer class="footer">
@@ -230,7 +212,7 @@
     <div class="cart-panel__body"></div>
     <div class="cart-panel__footer">
       <div class="cart-total"><span class="cart-total__label">Total:</span><span class="cart-total__val">Q0.00</span></div>
-      <button class="btn btn--primary btn--full" onclick="showToast('Función de pago próximamente 🚀','info')">Proceder al pago</button>
+      <button class="btn btn--primary btn--full" onclick="generateInvoicePDF()">Proceder al pago</button>
     </div>
   </aside>
   <button class="back-top" aria-label="Volver arriba">↑</button>
